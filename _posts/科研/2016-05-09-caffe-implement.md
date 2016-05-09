@@ -56,7 +56,7 @@ sudo ln -s libcudnn.so.7.0 libcudnn.so
 sudo gedit /etc/profile
 ```
 
-- 在文件后面加入PATH=/usr/local/cuda/bin:$PATH export PATH 保存后, 执行下列命令, 使环境变量立即生效
+在文件后面加入PATH=/usr/local/cuda/bin:$PATH export PATH 保存后, 执行下列命令, 使环境变量立即生效
 
 ```
 source /etc/profile
@@ -118,6 +118,7 @@ sudo apt-get install python-pip
 ```
 
 再下载caffe，我把caffe放在用户目录下
+
 - 安装git
 
 ```
@@ -137,7 +138,7 @@ cd caffe/python
 sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 ```
 
-- 最后安装requirement里面的包，需要root权限
+最后安装requirement里面的包，需要root权限
 
 ```
 sudo su
@@ -154,6 +155,7 @@ exit
 10，编译Caffe
 
 终于来到这里了
+
 - 进入caffe-master目录，复制一份Makefile.config.examples
 
 ```
@@ -161,6 +163,7 @@ cp Makefile.config.example Makefile.config
 ```
 
 修改其中的一些路径，保存退出
+
 - 编译
 
 ```
