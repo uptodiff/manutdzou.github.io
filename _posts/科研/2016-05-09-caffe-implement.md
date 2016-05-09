@@ -10,9 +10,9 @@ description:
 ###Caffe 安装配置步骤:
 
 1，安装开发所需的依赖包
-``` bash
-sudo apt-get install build-essential  # basic requirement  
-sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler #required by caffe
+```
+- sudo apt-get install build-essential  # basic requirement  
+- sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler #required by caffe
 ```
 
 2，安装CUDA 7.0
