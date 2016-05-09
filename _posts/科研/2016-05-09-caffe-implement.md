@@ -18,7 +18,7 @@ sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev 
 
 2，安装CUDA 7.0
 
-- 离线.deb安装，官网下载deb文件，切换到下载的deb所在目录，执行下边的命令
+离线.deb安装，官网下载deb文件，切换到下载的deb所在目录，执行下边的命令
 
 ```
 sudo dpkg -i cuda-repo-<distro>_<version>_<architecture>.deb
@@ -26,11 +26,11 @@ sudo apt-get update
 sudo apt-get install cuda
 ```
 
-- 然后重启电脑：sudo reboot
+然后重启电脑：sudo reboot
 
 3，安装cuDNN
 
-- 下载cudnn-7.0-linux-x64-v3.0-rc.tgz
+下载cudnn-7.0-linux-x64-v3.0-rc.tgz
 
 ```
 tar -zxvf cudnn-7.0-linux-x64-v3.0-rc.tgz
@@ -39,7 +39,7 @@ sudo cp lib* /usr/local/cuda/lib64/  (切换到lib64目录)
 sudo cp cudnn.h /usr/local/cuda/include/  （切换到include目录）
 ```
 
-- 更新软连接
+更新软连接
 
 ```
 cd /usr/local/cuda/lib64/
@@ -50,7 +50,7 @@ sudo ln -s libcudnn.so.7.0 libcudnn.so
 
 4，设置环境变量
 
-- 在/etc/profile中添加CUDA环境变量
+在/etc/profile中添加CUDA环境变量
 
 ```
 sudo gedit /etc/profile
@@ -76,7 +76,7 @@ sudo ldconfig
 
 5，安装CUDA SAMPLE
 
-- 进入/usr/local/cuda/samples, 执行下列命令来build samples
+进入/usr/local/cuda/samples, 执行下列命令来build samples
 
 ```
 sudo make all –j8
@@ -92,7 +92,7 @@ sudo make all –j8
 
 6，安装Intel MKL 或Atlas
 
-- 安装命令：
+安装命令
 
 ```
 sudo apt-get install libatlas-base-dev
@@ -110,16 +110,14 @@ sh sudo ./opencv2_4_10.sh
 
 8，安装Caffe所需要的Python环境
 
-- 网上介绍用现有的anaconda，我反正不建议，因为路径设置麻烦，很容易出错，而且自己安装很简单也挺快的。
+网上介绍用现有的anaconda，我反正不建议，因为路径设置麻烦，很容易出错，而且自己安装很简单也挺快的。
 首先需要安装pip
 
 ```
 sudo apt-get install python-pip
 ```
 
-再下载caffe，我把caffe放在用户目录下
-
-- 安装git
+再下载caffe，我把caffe放在用户目录下，安装git
 
 ```
 sudo apt-get install git
@@ -156,7 +154,7 @@ exit
 
 终于来到这里了
 
-- 进入caffe-master目录，复制一份Makefile.config.examples
+进入caffe-master目录，复制一份Makefile.config.examples
 
 ```
 cp Makefile.config.example Makefile.config
@@ -164,7 +162,7 @@ cp Makefile.config.example Makefile.config
 
 修改其中的一些路径，保存退出
 
-- 编译
+编译
 
 ```
 make all -j4
@@ -180,7 +178,7 @@ make  pycaffe
 
 12，安装 matlab
 
-- 降级安装gcc4.7  g++4.7 因为matlab编译只支持到4.7
+降级安装gcc4.7  g++4.7 因为matlab编译只支持到4.7
 
 ```
 sudo apt-get install –y gcc-4.7   sudo apt-get install –y g++-4.7
@@ -190,7 +188,7 @@ sudo rm g++   sudo ln –s g++-4.7 g++
 gcc –version 查看版本号
 ```
 
-- 编译Matlab wrapper
+编译Matlab wrapper
 
 ```
 make matcaffe 
