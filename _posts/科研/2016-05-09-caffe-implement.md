@@ -150,7 +150,7 @@ for req in $(cat requirements.txt); do pip install $req; done
 exit 
 ```
 
-10，编译Caffe
+9，编译Caffe
 
 终于来到这里了
 
@@ -170,13 +170,13 @@ make test
 make runtest
 ```
 
-11，编译Python wrapper
+10，编译Python wrapper
 
 ```
 make  pycaffe
 ```
 
-12，安装 matlab
+11，安装 matlab
 
 降级安装gcc4.7  g++4.7 因为matlab编译只支持到4.7
 
