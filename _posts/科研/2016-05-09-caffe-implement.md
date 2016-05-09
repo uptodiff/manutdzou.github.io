@@ -19,11 +19,13 @@ sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev 
 2，安装CUDA 7.0
 
 - 离线.deb安装，官网下载deb文件，切换到下载的deb所在目录，执行下边的命令
+
 ```
 sudo dpkg -i cuda-repo-<distro>_<version>_<architecture>.deb
 sudo apt-get update 
 sudo apt-get install cuda
 ```
+
 - 然后重启电脑：sudo reboot
 
 3，安装cuDNN
