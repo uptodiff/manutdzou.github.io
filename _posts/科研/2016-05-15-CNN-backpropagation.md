@@ -150,6 +150,6 @@ $$h\left ( a_{j}^{l} \right ){}'$$
 
 反向传播过程中，如果前向传播使用的相关滤波器。反向传播时，针对当前层是卷积层时：
 
-### 前一层的feature map的$\delta$值等于当前层feature map的$\delta$值卷积操作当前层的相关滤波器（或者表述为后一层feature map的$\delta$值相关操作前后左右翻转当前层的相关滤波器）。
+### 前一层的feature map的$\delta$值等于当前层feature map的$\delta$值卷积操作当前层的相关滤波器（或者表述为当前层feature map的$\delta$值相关操作前后左右翻转当前层的相关滤波器）。
 
 ### 当前层的滤波器$\delta$更新等于前一层的feature map的值和当前层feature map的$\delta$值的相关操作。
