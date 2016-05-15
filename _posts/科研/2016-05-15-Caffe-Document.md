@@ -73,17 +73,17 @@ transform_param {
 
 层类型（layer type）:Data
 
-  必须设置的参数：
+必须设置的参数：
   
-  source: 包含数据库的目录名称，如examples/mnist/mnist_train_lmdb
+-source: 包含数据库的目录名称，如examples/mnist/mnist_train_lmdb
   
-  batch_size: 每次处理的数据个数，如64
+-batch_size: 每次处理的数据个数，如64
 
 可选的参数：
   
-  rand_skip: 在开始的时候，路过某个数据的输入。通常对异步的SGD很有用。
+-rand_skip: 在开始的时候，路过某个数据的输入。通常对异步的SGD很有用。
   
-  backend: 选择是采用LevelDB还是LMDB, 默认是LevelDB.
+-backend: 选择是采用LevelDB还是LMDB, 默认是LevelDB.
 
 示例：
 
@@ -113,15 +113,15 @@ layer {
 
 必须设置的参数：
  
- batch_size：每一次处理的数据个数，比如2
+-batch_size：每一次处理的数据个数，比如2
  
- channels：通道数
+-channels：通道数
   
- height：高度
+-height：高度
    
- width: 宽度
+-width: 宽度
 
- 示例：
+示例：
 
 ```
 layer {
@@ -149,9 +149,9 @@ layer {
 
 必须设置的参数：
 
-  source: 读取的文件名称
+-source: 读取的文件名称
 
-  batch_size: 每一次处理的数据个数
+-batch_size: 每一次处理的数据个数
 
 示例：
 
@@ -174,21 +174,21 @@ layer {
 
 必须设置的参数：
   
-  source: 一个文本文件的名字，每一行给定一个图片文件的名称和标签（label)
+-source: 一个文本文件的名字，每一行给定一个图片文件的名称和标签（label)
   
-  batch_size: 每一次处理的数据个数，即图片数
+-batch_size: 每一次处理的数据个数，即图片数
 
 可选参数：
   
-  rand_skip: 在开始的时候，路过某个数据的输入。通常对异步的SGD很有用。
+-rand_skip: 在开始的时候，路过某个数据的输入。通常对异步的SGD很有用。
   
-  shuffle: 随机打乱顺序，默认值为false
+-shuffle: 随机打乱顺序，默认值为false
   
-  new_height,new_width: 如果设置，则将图片进行resize
+-new_height,new_width: 如果设置，则将图片进行resize
 
 示例：
 
- ```
+```
  layer {
   name: "data"
   type: "ImageData"
@@ -214,9 +214,9 @@ layer {
 
 必须设置的参数：
   
-  source: 一个文本文件的名字
+-source: 一个文本文件的名字
   
-  batch_size: 每一次处理的数据个数，即图片数
+-batch_size: 每一次处理的数据个数，即图片数
 
 示例：
 
@@ -256,29 +256,29 @@ layer {
 
 层类型：Convolution
 　　
-  lr_mult: 学习率的系数，最终的学习率是这个数乘以solver.prototxt配置文件中的base_lr。如果有两个lr_mult, 则第一个表示权值的学习率，第二个表示偏置项的学习率。一般偏置项的学习率是权值学习率的两倍。
+-lr_mult: 学习率的系数，最终的学习率是这个数乘以solver.prototxt配置文件中的base_lr。如果有两个lr_mult, 则第一个表示权值的学习率，第二个表示偏置项的学习率。一般偏置项的学习率是权值学习率的两倍。
 
 在后面的convolution_param中，我们可以设定卷积层的特有参数。
 
 必须设置的参数：
   　　
-  num_output: 卷积核（filter)的个数
+-num_output: 卷积核（filter)的个数
   　　
-  kernel_size: 卷积核的大小。如果卷积核的长和宽不等，需要用kernel_h和kernel_w分别设定
+-kernel_size: 卷积核的大小。如果卷积核的长和宽不等，需要用kernel_h和kernel_w分别设定
 
 其它参数：
   　　 
-  stride: 卷积核的步长，默认为1。也可以用stride_h和stride_w来设置。
+-stride: 卷积核的步长，默认为1。也可以用stride_h和stride_w来设置。
   　　 
-  pad: 扩充边缘，默认为0，不扩充。 扩充的时候是左右、上下对称的，比如卷积核的大小为5*5，那么pad设置为2，则四个边缘都扩充2个像素，即宽度和高度都扩充了4个像素,这样卷积运算之后的特征图就不会变小。也可以通过pad_h和pad_w来分别设定。
+-pad: 扩充边缘，默认为0，不扩充。 扩充的时候是左右、上下对称的，比如卷积核的大小为5*5，那么pad设置为2，则四个边缘都扩充2个像素，即宽度和高度都扩充了4个像素,这样卷积运算之后的特征图就不会变小。也可以通过pad_h和pad_w来分别设定。
     　　
-  weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
+-weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
     　　
-  bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
+-bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
    　　 
-  bias_term: 是否开启偏置项，默认为true, 开启
+-bias_term: 是否开启偏置项，默认为true, 开启
   
-  group: 分组，默认为1组。如果大于1，我们限制卷积的连接操作在一个子集内。如果我们根据图像的通道来分组，那么第i个输出分组只能与第i个输入分组进行连接。
+-group: 分组，默认为1组。如果大于1，我们限制卷积的连接操作在一个子集内。如果我们根据图像的通道来分组，那么第i个输出分组只能与第i个输入分组进行连接。
  
 
 输入：n*c0*w0*h0
@@ -329,15 +329,15 @@ layer {
 
 必须设置的参数：
   　　 
-  kernel_size: 池化的核大小。也可以用kernel_h和kernel_w分别设定。
+-kernel_size: 池化的核大小。也可以用kernel_h和kernel_w分别设定。
 
 其它参数：
   　
-  pool: 池化方法，默认为MAX。目前可用的方法有MAX, AVE, 或STOCHASTIC
+-pool: 池化方法，默认为MAX。目前可用的方法有MAX, AVE, 或STOCHASTIC
 　　
-  pad: 和卷积层的pad的一样，进行边缘扩充。默认为0
+-pad: 和卷积层的pad的一样，进行边缘扩充。默认为0
 　　
-  stride: 池化的步长，默认为1。一般我们设置为2，即不重叠。也可以用stride_h和stride_w来设置。
+-stride: 池化的步长，默认为1。一般我们设置为2，即不重叠。也可以用stride_h和stride_w来设置。
 
 示例：
 
@@ -377,15 +377,15 @@ h1=(h0+2*pad-kernel_size)/stride+1;
 
 参数：全部为可选，没有必须
 　　
-  local_size: 默认为5。如果是跨通道LRN，则表示求和的通道数；如果是在通道内LRN，则表示求和的正方形区域长度。
+-local_size: 默认为5。如果是跨通道LRN，则表示求和的通道数；如果是在通道内LRN，则表示求和的正方形区域长度。
 　　
-  alpha: 默认为1，归一化公式中的参数。
+-alpha: 默认为1，归一化公式中的参数。
 　　
-  beta: 默认为5，归一化公式中的参数。
+-beta: 默认为5，归一化公式中的参数。
 　　
-  norm_region: 默认为ACROSS_CHANNELS。有两个选择，ACROSS_CHANNELS表示在相邻的通道间求和归一化。WITHIN_CHANNEL表示在一个通道内部特定的区域内进行求和归一化。与前面的local_size参数对应。
+-norm_region: 默认为ACROSS_CHANNELS。有两个选择，ACROSS_CHANNELS表示在相邻的通道间求和归一化。WITHIN_CHANNEL表示在一个通道内部特定的区域内进行求和归一化。与前面的local_size参数对应。
 
-  归一化公式：对于每一个输入, 去除以$\left ( 1+\left ( \alpha /n \right ) \sum_{i}x_{i}^{2}\right )^{\beta }$，得到归一化后的输出
+归一化公式：对于每一个输入, 去除以$\left ( 1+\left ( \alpha /n \right ) \sum_{i}x_{i}^{2}\right )^{\beta }$，得到归一化后的输出
  
 示例：
 
@@ -458,7 +458,7 @@ f(x)=max(x,0)
 
 可选参数：
 　　
-  negative_slope：默认为0. 对标准的ReLU函数进行变化，如果设置了这个值，那么数据为负数时，就不再设置为0，而是用原始数据乘以negative_slope
+-negative_slope：默认为0. 对标准的ReLU函数进行变化，如果设置了这个值，那么数据为负数时，就不再设置为0，而是用原始数据乘以negative_slope
 
 ```
 layer {
@@ -515,11 +515,11 @@ $$f\left ( x \right )=\left ( shift+scale*x \right )^{power}$$
 
 可选参数：
 　　
-  power: 默认为1
+-power: 默认为1
 　　
-  scale: 默认为1
+-scale: 默认为1
 　　
-  shift: 默认为0
+-shift: 默认为0
 
 ```
 layer {
@@ -613,15 +613,15 @@ lr_mult: 学习率的系数，最终的学习率是这个数乘以solver.prototx
 
 必须设置的参数：
 
-  num_output: 过滤器（filfter)的个数
+-num_output: 过滤器（filfter)的个数
 
 其它参数：
 
-  weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
+-weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
   
-  bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
+-bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
   
-  bias_term: 是否开启偏置项，默认为true, 开启
+-bias_term: 是否开启偏置项，默认为true, 开启
 
 ```
 layer {
@@ -693,11 +693,11 @@ layer {
 
 有一个可选的参数组shape, 用于指定blob数据的各维的值（blob是一个四维的数据：n*c*w*h）。
 
-dim:0  表示维度不变，即输入和输出是相同的维度。
+-dim:0  表示维度不变，即输入和输出是相同的维度。
 
-dim:2 或 dim:3 将原来的维度变成2或3
+-dim:2 或 dim:3 将原来的维度变成2或3
 
-dim:-1 表示由系统自动计算维度。数据的总量不变，系统会根据blob数据的其它三维来自动计算当前维的维度值 。
+-dim:-1 表示由系统自动计算维度。数据的总量不变，系统会根据blob数据的其它三维来自动计算当前维的维度值 。
 
 假设原数据为：64*3*28*28， 表示64张3通道的28*28的彩色图片
 
@@ -921,8 +921,7 @@ power: 0.75
 这四行可以放在一起理解，用于学习率的设置。只要是梯度下降法来求解优化，都会有一个学习率，也叫步长。base_lr用于设置基础学习率，在迭代的过程中，可以对基础学习率进行调整。怎么样进行调整，就是调整的策略，由lr_policy来设置。
 
 lr_policy可以设置为下面这些值，相应的学习率的计算为：
-
-•	
+	
 
 •	- fixed:　　 保持base_lr不变.
 
