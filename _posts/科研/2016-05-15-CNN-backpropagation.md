@@ -3,7 +3,7 @@ layout: post
 title: CNN反向传播
 category: 科研
 tags: 深度学习
-keywords: 理论
+keywords: CNN反向传播理论
 description: 
 ---
 
