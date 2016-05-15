@@ -9,9 +9,9 @@ description:
 
 # CNN反向求导及推导
 
-首先我们来看看CNN系统的目标函数，设有样本$\left( \lbrace{x_i,y_i\rbrace} \right)$共$m$个，CNN网络共有L层，中间包含若干个卷积层和pooling层，最后一层的输出为$f\left( {{x_i}} \right)$，则系统的loss表达式为(对权值进行了惩罚，一般分类都采用交叉熵形式)：
+首先我们来看看CNN系统的目标函数，设有样本$\left({x_i},{y_i} \right)$共$m$个，CNN网络共有L层，中间包含若干个卷积层和pooling层，最后一层的输出为$f\left( {x_i} \right)$，则系统的loss表达式为(对权值进行了惩罚，一般分类都采用交叉熵形式)：
 
-$$Loss =  - \frac{1}{m}\sum\nolimits_{i = 1}^m {y_i^'} \log f\left( {{x_i}} \right) + \lambda \sum\nolimits_{k = 1}^L {sum\left( {{{\left\| {{W_k}} \right\|}^2}} \right)}$$
+$$Loss =  - \frac{1}{m}\sum\nolimits_{i = 1}^m {y_i^'} \log f\left( {x_i} \right) + \lambda \sum\nolimits_{k = 1}^L {sum\left( {{{\left\| {{W_k}} \right\|}^2}} \right)}$$
 
 ## 问题一：求输出层的误差敏感项。
 
@@ -19,10 +19,10 @@ $$Loss =  - \frac{1}{m}\sum\nolimits_{i = 1}^m {y_i^'} \log f\left( {{x_i}} \rig
 
 ![1](/public/img/posts/CNN反向传播/1.png)
 
-其中$f\left( {{x}} \right)$的下标$c$的含义见公式：
+其中$f\left( {x} \right)$的下标$c$的含义见公式：
 $$f{\left( x \right)_c} = p\left( {y = c|x} \right)$$
 
-因为$x$通过CNN后得到的输出$f\left( {{x}} \right)$是一个向量，该向量的元素值都是概率值，分别代表着$x$被分到各个类中的概率，而$f\left( {{x}} \right)$中下标c的意思就是输出向量中取对应$c$那个类的概率值。
+因为$x$通过CNN后得到的输出$f\left( {x} \right)$是一个向量，该向量的元素值都是概率值，分别代表着$x$被分到各个类中的概率，而$f\left( {x} \right)$中下标c的意思就是输出向量中取对应$c$那个类的概率值。
 采用上面的符号，可以求得此时loss值对输出层的误差敏感性表达式为:
 
 ![2](/public/img/posts/CNN反向传播/2.png)
