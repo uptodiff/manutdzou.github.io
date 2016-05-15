@@ -70,13 +70,21 @@ transform_param {
 后面的data_param部分，就是根据数据的来源不同，来进行不同的设置。
 
 ### 1、数据来自于数据库（如LevelDB和LMDB）
-  层类型（layer type）:Data
-必须设置的参数：
+
+层类型（layer type）:Data
+
+  必须设置的参数：
+  
   source: 包含数据库的目录名称，如examples/mnist/mnist_train_lmdb
+  
   batch_size: 每次处理的数据个数，如64
+
 可选的参数：
+  
   rand_skip: 在开始的时候，路过某个数据的输入。通常对异步的SGD很有用。
+  
   backend: 选择是采用LevelDB还是LMDB, 默认是LevelDB.
+
 示例：
 
 ```
@@ -100,13 +108,20 @@ layer {
 ```
 
 ### 2、数据来自于内存
+
 层类型：MemoryData
+
 必须设置的参数：
+ 
  batch_size：每一次处理的数据个数，比如2
+ 
  channels：通道数
-  height：高度
-   width: 宽度
-示例：
+  
+ height：高度
+   
+ width: 宽度
+
+ 示例：
 
 ```
 layer {
@@ -129,10 +144,15 @@ layer {
 ```
 
 ### 3、数据来自于HDF5
+
 层类型：HDF5Data
+
 必须设置的参数：
-source: 读取的文件名称
-batch_size: 每一次处理的数据个数
+
+  source: 读取的文件名称
+
+  batch_size: 每一次处理的数据个数
+
 示例：
 
 ```
@@ -149,15 +169,24 @@ layer {
 ```
 
 ### 4、数据来自于图片
+
 层类型：ImageData
+
 必须设置的参数：
+  
   source: 一个文本文件的名字，每一行给定一个图片文件的名称和标签（label)
+  
   batch_size: 每一次处理的数据个数，即图片数
+
 可选参数：
+  
   rand_skip: 在开始的时候，路过某个数据的输入。通常对异步的SGD很有用。
+  
   shuffle: 随机打乱顺序，默认值为false
+  
   new_height,new_width: 如果设置，则将图片进行resize
- 示例：
+
+示例：
 
  ```
  layer {
@@ -180,10 +209,15 @@ layer {
 ```
 
 ### 5、数据来源于Windows
+
 层类型：WindowData
+
 必须设置的参数：
+  
   source: 一个文本文件的名字
+  
   batch_size: 每一次处理的数据个数，即图片数
+
 示例：
 
 ```
@@ -215,27 +249,48 @@ layer {
 ## 视觉层（Vision Layers)及参数
  
 本文只讲解视觉层（Vision Layers)的参数，视觉层包括Convolution, Pooling, Local Response Normalization (LRN), im2col等层。
+
 ### 1、Convolution层：
+
 就是卷积层，是卷积神经网络（CNN）的核心层。
+
 层类型：Convolution
-　　lr_mult: 学习率的系数，最终的学习率是这个数乘以solver.prototxt配置文件中的base_lr。如果有两个lr_mult, 则第一个表示权值的学习率，第二个表示偏置项的学习率。一般偏置项的学习率是权值学习率的两倍。
+　　
+  lr_mult: 学习率的系数，最终的学习率是这个数乘以solver.prototxt配置文件中的base_lr。如果有两个lr_mult, 则第一个表示权值的学习率，第二个表示偏置项的学习率。一般偏置项的学习率是权值学习率的两倍。
+
 在后面的convolution_param中，我们可以设定卷积层的特有参数。
+
 必须设置的参数：
-  　　num_output: 卷积核（filter)的个数
-  　　kernel_size: 卷积核的大小。如果卷积核的长和宽不等，需要用kernel_h和kernel_w分别设定
+  　　
+  num_output: 卷积核（filter)的个数
+  　　
+  kernel_size: 卷积核的大小。如果卷积核的长和宽不等，需要用kernel_h和kernel_w分别设定
+
 其它参数：
-  　　 stride: 卷积核的步长，默认为1。也可以用stride_h和stride_w来设置。
-  　　 pad: 扩充边缘，默认为0，不扩充。 扩充的时候是左右、上下对称的，比如卷积核的大小为5*5，那么pad设置为2，则四个边缘都扩充2个像素，即宽度和高度都扩充了4个像素,这样卷积运算之后的特征图就不会变小。也可以通过pad_h和pad_w来分别设定。
-    　　weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
-    　　bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
-   　　 bias_term: 是否开启偏置项，默认为true, 开启
-   　　 group: 分组，默认为1组。如果大于1，我们限制卷积的连接操作在一个子集内。如果我们根据图像的通道来分组，那么第i个输出分组只能与第i个输入分组进行连接。
+  　　 
+  stride: 卷积核的步长，默认为1。也可以用stride_h和stride_w来设置。
+  　　 
+  pad: 扩充边缘，默认为0，不扩充。 扩充的时候是左右、上下对称的，比如卷积核的大小为5*5，那么pad设置为2，则四个边缘都扩充2个像素，即宽度和高度都扩充了4个像素,这样卷积运算之后的特征图就不会变小。也可以通过pad_h和pad_w来分别设定。
+    　　
+  weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
+    　　
+  bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
+   　　 
+  bias_term: 是否开启偏置项，默认为true, 开启
+  
+  group: 分组，默认为1组。如果大于1，我们限制卷积的连接操作在一个子集内。如果我们根据图像的通道来分组，那么第i个输出分组只能与第i个输入分组进行连接。
  
+
 输入：n*c0*w0*h0
+
 输出：n*c1*w1*h1
+
 其中，c1就是参数中的num_output，生成的特征图个数
- w1=(w0+2*pad-kernel_size)/stride+1;
- h1=(h0+2*pad-kernel_size)/stride+1;
+ 
+w1=(w0+2*pad-kernel_size)/stride+1;
+ 
+h1=(h0+2*pad-kernel_size)/stride+1;
+
 如果设置stride为1，前后两次卷积部分存在重叠。如果设置pad=(kernel_size-1)/2,则运算后，宽度和高度不变。
 
 示例：
@@ -267,14 +322,23 @@ layer {
 ```
 
 ### 2、Pooling层
+
 也叫池化层，为了减少运算量和数据维度而设置的一种层。
+
 层类型：Pooling
+
 必须设置的参数：
-  　　 kernel_size: 池化的核大小。也可以用kernel_h和kernel_w分别设定。
+  　　 
+  kernel_size: 池化的核大小。也可以用kernel_h和kernel_w分别设定。
+
 其它参数：
-  　pool: 池化方法，默认为MAX。目前可用的方法有MAX, AVE, 或STOCHASTIC
-　　pad: 和卷积层的pad的一样，进行边缘扩充。默认为0
-　　stride: 池化的步长，默认为1。一般我们设置为2，即不重叠。也可以用stride_h和stride_w来设置。
+  　
+  pool: 池化方法，默认为MAX。目前可用的方法有MAX, AVE, 或STOCHASTIC
+　　
+  pad: 和卷积层的pad的一样，进行边缘扩充。默认为0
+　　
+  stride: 池化的步长，默认为1。一般我们设置为2，即不重叠。也可以用stride_h和stride_w来设置。
+
 示例：
 
 ```
@@ -292,22 +356,36 @@ layer {
 ```
 
 pooling层的运算方法基本是和卷积层是一样的。
+
 输入：n*c*w0*h0
+
 输出：n*c*w1*h1
+
 和卷积层的区别就是其中的c保持不变
- w1=(w0+2*pad-kernel_size)/stride+1;
- h1=(h0+2*pad-kernel_size)/stride+1;
+ 
+w1=(w0+2*pad-kernel_size)/stride+1;
+ 
+h1=(h0+2*pad-kernel_size)/stride+1;
+
 如果设置stride为2，前后两次卷积部分不重叠。100*100的特征图池化后，变成50*50.
 
 ### 3、Local Response Normalization (LRN)层
+
 此层是对一个输入的局部区域进行归一化，达到“侧抑制”的效果。可去搜索AlexNet或GoogLenet，里面就用到了这个功能
- 层类型：LRN
+
+层类型：LRN
+
 参数：全部为可选，没有必须
-　　local_size: 默认为5。如果是跨通道LRN，则表示求和的通道数；如果是在通道内LRN，则表示求和的正方形区域长度。
-　　alpha: 默认为1，归一化公式中的参数。
-　　beta: 默认为5，归一化公式中的参数。
-　　norm_region: 默认为ACROSS_CHANNELS。有两个选择，ACROSS_CHANNELS表示在相邻的通道间求和归一化。WITHIN_CHANNEL表示在一个通道内部特定的区域内进行求和归一化。与前面的local_size参数对应。
-归一化公式：对于每一个输入, 去除以$\left ( 1+\left ( \alpha /n \right ) \sum_{i}x_{i}^{2}\right )^{\beta }$，得到归一化后的输出
+　　
+  local_size: 默认为5。如果是跨通道LRN，则表示求和的通道数；如果是在通道内LRN，则表示求和的正方形区域长度。
+　　
+  alpha: 默认为1，归一化公式中的参数。
+　　
+  beta: 默认为5，归一化公式中的参数。
+　　
+  norm_region: 默认为ACROSS_CHANNELS。有两个选择，ACROSS_CHANNELS表示在相邻的通道间求和归一化。WITHIN_CHANNEL表示在一个通道内部特定的区域内进行求和归一化。与前面的local_size参数对应。
+
+  归一化公式：对于每一个输入, 去除以$\left ( 1+\left ( \alpha /n \right ) \sum_{i}x_{i}^{2}\right )^{\beta }$，得到归一化后的输出
  
 示例：
 
@@ -326,6 +404,7 @@ layers {
 ```
 
 ### 4、im2col层
+
 如果对matlab比较熟悉的话，就应该知道im2col是什么意思。它先将一个大矩阵，重叠地划分为多个子矩阵，对每个子矩阵序列化成向量，最后得到另外一个矩阵。
  
 看一看图就知道了：
@@ -333,6 +412,7 @@ layers {
 ![1](/public/img/posts/Caffe教程/1.png)
 
 在caffe中，卷积运算就是先对数据进行im2col操作，再进行内积运算（inner product)。这样做，比原始的卷积操作速度更快。
+
 看看两种卷积操作的异同：
 
 ![2](/public/img/posts/Caffe教程/2.png)
@@ -340,10 +420,15 @@ layers {
 ## 激活层（Activiation Layers)及参数
 
 在激活层中，对输入数据进行激活操作（实际上就是一种函数变换），是逐元素进行运算的。从bottom得到一个blob数据输入，运算后，从top输入一个blob数据。在运算过程中，没有改变数据的大小，即输入和输出的数据大小是相等的。
+
 输入：n*c*h*w
+
 输出：n*c*h*w
+
 常用的激活函数有sigmoid, tanh,relu等，下面分别介绍。
+
 ### 1、Sigmoid
+
 对每个输入数据，利用sigmoid函数执行操作。这种层设置比较简单，没有额外的参数。
 
 $$S\left ( x \right )=\frac{1}{1+e^{-x}}$$
@@ -364,11 +449,16 @@ layer {
 ### 2、ReLU / Rectified-Linear and Leaky-ReLU
 
 ReLU是目前使用最多的激活函数，主要因为其收敛更快，并且能保持同样效果。
+
 标准的ReLU函数为max(x, 0)，当x>0时，输出x; 当x<=0时，输出0
+
 f(x)=max(x,0)
+
 层类型：ReLU
+
 可选参数：
-　　negative_slope：默认为0. 对标准的ReLU函数进行变化，如果设置了这个值，那么数据为负数时，就不再设置为0，而是用原始数据乘以negative_slope
+　　
+  negative_slope：默认为0. 对标准的ReLU函数进行变化，如果设置了这个值，那么数据为负数时，就不再设置为0，而是用原始数据乘以negative_slope
 
 ```
 layer {
@@ -401,7 +491,9 @@ layer {
 ### 4、Absolute Value
 
 求每个输入数据的绝对值。
+
 f(x)=Abs(x)
+
 层类型：AbsVal
 
 ```
@@ -420,10 +512,14 @@ layer {
 $$f\left ( x \right )=\left ( shift+scale*x \right )^{power}$$
 
 层类型：Power
+
 可选参数：
-　　power: 默认为1
-　　scale: 默认为1
-　　shift: 默认为0
+　　
+  power: 默认为1
+　　
+  scale: 默认为1
+　　
+  shift: 默认为0
 
 ```
 layer {
@@ -442,7 +538,9 @@ layer {
 ### 6、BNLL
 
 binomial normal log likelihood的简称
+
 f(x)=log(1 + exp(x))
+
 层类型：BNLL
 
 ```
@@ -461,7 +559,9 @@ layer {
 ### 1、softmax-loss
 
 softmax-loss层和softmax层计算大致是相同的。softmax是一个分类器，计算的是类别的概率（Likelihood），是Logistic Regression 的一种推广。Logistic Regression 只能用于二分类，而softmax可以用于多分类。
+
 softmax与softmax-loss的区别：
+
 softmax计算公式：
 
 $$P_{j}=\frac{e_{j}^{o}}{\sum_{j}e^{o_{k}}}$$
@@ -471,7 +571,9 @@ $$P_{j}=\frac{e_{j}^{o}}{\sum_{j}e^{o_{k}}}$$
 $$L=-\sum_{j}y_{j}logp_{j}$$
 
 用户可能最终目的就是得到各个类别的概率似然值，这个时候就只需要一个 Softmax层，而不一定要进行softmax-Loss 操作；或者是用户有通过其他什么方式已经得到了某种概率似然值，然后要做最大似然估计，此时则只需要后面的 softmax-Loss 而不需要前面的 Softmax 操作。因此提供两个不同的 Layer 结构比只提供一个合在一起的 Softmax-Loss Layer 要灵活许多。
-不管是softmax layer还是softmax-loss layer,都是没有参数的，只是层类型不同而也
+
+不管是softmax layer还是softmax-loss layer,都是没有参数的，只是层类型不同而以
+
 softmax-loss layer：输出loss值
 
 ```
@@ -498,17 +600,28 @@ layers {
 ### 2、Inner Product
 
 全连接层，把输入当作成一个向量，输出也是一个简单向量（把输入数据blobs的width和height全变为1）。
+
 输入： n*c0*h*w
+
 输出： n*c1*1*1
+
 全连接层实际上也是一种卷积层，只是它的卷积核大小和原数据大小一致。因此它的参数基本和卷积层的参数一样。
+
 层类型：InnerProduct
+
 lr_mult: 学习率的系数，最终的学习率是这个数乘以solver.prototxt配置文件中的base_lr。如果有两个lr_mult, 则第一个表示权值的学习率，第二个表示偏置项的学习率。一般偏置项的学习率是权值学习率的两倍。
+
 必须设置的参数：
-  　　num_output: 过滤器（filfter)的个数
+
+  num_output: 过滤器（filfter)的个数
+
 其它参数：
-    　　weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
-    　　bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
-   　　 bias_term: 是否开启偏置项，默认为true, 开启
+
+  weight_filler: 权值初始化。 默认为“constant",值全为0，很多时候我们用"xavier"算法来进行初始化，也可以设置为”gaussian"
+  
+  bias_filler: 偏置项的初始化。一般设置为"constant",值全为0。
+  
+  bias_term: 是否开启偏置项，默认为true, 开启
 
 ```
 layer {
@@ -537,6 +650,7 @@ layer {
 ### 3、accuracy
 
 输出分类（预测）精确度，只有test阶段才有，因此需要加入include参数。
+
 层类型：Accuracy
 
 ```
@@ -555,7 +669,9 @@ layer {
 ### 4、reshape
 
 在不改变数据的情况下，改变输入的维度。
+
 层类型：Reshape
+
 先来看例子
 
 ```
@@ -576,10 +692,15 @@ layer {
 ```
 
 有一个可选的参数组shape, 用于指定blob数据的各维的值（blob是一个四维的数据：n*c*w*h）。
+
 dim:0  表示维度不变，即输入和输出是相同的维度。
+
 dim:2 或 dim:3 将原来的维度变成2或3
+
 dim:-1 表示由系统自动计算维度。数据的总量不变，系统会根据blob数据的其它三维来自动计算当前维的维度值 。
+
 假设原数据为：64*3*28*28， 表示64张3通道的28*28的彩色图片
+
 经过reshape变换：
 
 ```
@@ -598,6 +719,7 @@ reshape_param {
 ### 5、Dropout
 
 Dropout是一个防止过拟合的trick。可以随机让网络某些隐含层节点的权重不工作。
+
 先看例子：
 
 ```
@@ -613,40 +735,51 @@ layer {
 ```
 
 只需要设置一个dropout_ratio就可以了。
+
 还有其它更多的层，但用的地方不多，就不一一介绍了。
+
 随着深度学习的深入，各种各样的新模型会不断的出现，因此对应的各种新类型的层也在不断的出现。这些新出现的层，我们只有在等caffe更新到新版本后，再去慢慢地摸索了。
 
 ## Blob,Layer and Net以及对应配置文件的编写
 
 深度网络(net)是一个组合模型，它由许多相互连接的层（layers)组合而成。Caffe就是组建深度网络的这样一种工具，它按照一定的策略，一层一层的搭建出自己的模型。它将所有的信息数据定义为blobs，从而进行便利的操作和通讯。Blob是caffe框架中一种标准的数组，一种统一的内存接口，它详细描述了信息是如何存储的，以及如何在层之间通讯的。
 
-### blob
+### 1、blob
 
 Blobs封装了运行时的数据信息，提供了CPU和GPU的同步。从数学上来说, Blob就是一个N维数组。它是caffe中的数据操作基本单位，就像matlab中以矩阵为基本操作对象一样。只是矩阵是二维的，而Blob是N维的。N可以是2，3，4等等。对于图片数据来说，Blob可以表示为（N*C*H*W）这样一个4D数组。其中N表示图片的数量，C表示图片的通道数，H和W分别表示图片的高度和宽度。当然，除了图片数据，Blob也可以用于非图片数据。比如传统的多层感知机，就是比较简单的全连接网络，用2D的Blob，调用innerProduct层来计算就可以了。
+
 在模型中设定的参数，也是用Blob来表示和运算。它的维度会根据参数的类型不同而不同。比如：在一个卷积层中，输入一张3通道图片，有96个卷积核，每个核大小为11*11，因此这个Blob是96*3*11*11. 而在一个全连接层中，假设输入1024通道图片，输出1000个数据，则Blob为1000*1024
 
-### layer
+### 2、layer
 
 层是网络模型的组成要素和计算的基本单位。层的类型比较多，如Data,Convolution,Pooling,ReLU,Softmax-loss,Accuracy等，一个层的定义大至如下图：
 
 ![3](/public/img/posts/Caffe教程/1.jpg)
 
 从bottom进行数据的输入 ，计算后，通过top进行输出。图中的黄色多边形表示输入输出的数据，蓝色矩形表示层。
+
 每一种类型的层都定义了三种关键的计算：setup,forward and backword
+
 setup: 层的建立和初始化，以及在整个模型中的连接初始化。
+
 forward: 从bottom得到输入数据，进行计算，并将计算结果送到top，进行输出。
+
 backward: 从层的输出端top得到数据的梯度，计算当前层的梯度，并将计算结果送到bottom,向前传递。
 
 ### 3、Net
 
 就像搭积木一样，一个net由多个layer组合而成。
+
 现给出 一个简单的2层神经网络的模型定义( 加上loss 层就变成三层了)，先给出这个网络的拓扑。
 
 ![4](/public/img/posts/Caffe教程/2.jpg)
 
 第一层：name为mnist, type为Data，没有输入（bottom)，只有两个输出（top),一个为data,一个为label
+
 第二层：name为ip，type为InnerProduct, 输入数据data, 输出数据ip
+
 第三层：name为loss, type为SoftmaxWithLoss，有两个输入，一个为ip,一个为label，有一个输出loss,没有画出来。
+
 对应的配置文件prototxt就可以这样写：
 
 ```
@@ -690,24 +823,43 @@ caffe train --solver=*_slover.prototxt
 ```
 
 在Deep Learning中，往往loss function是非凸的，没有解析解，我们需要通过优化方法来求解。solver的主要作用就是交替调用前向（forward)算法和后向（backward)算法来更新参数，从而最小化loss，实际上就是一种迭代的优化算法。
+
 到目前的版本，caffe提供了六种优化算法来求解最优参数，在solver配置文件中，通过设置type类型来选择。
+
 •	Stochastic Gradient Descent (type: "SGD"),
+
 •	AdaDelta (type: "AdaDelta"),
+
 •	Adaptive Gradient (type: "AdaGrad"),
+
 •	Adam (type: "Adam"),
+
 •	Nesterov’s Accelerated Gradient (type: "Nesterov") and
+
 •	RMSprop (type: "RMSProp")
- 具体的每种方法的介绍，请看本系列的下一篇文章, 本文着重介绍solver配置文件的编写。
+
+具体的每种方法的介绍，请看本系列的下一篇文章, 本文着重介绍solver配置文件的编写。
+
 Solver的流程：
+
 1.     设计好需要优化的对象，以及用于学习的训练网络和用于评估的测试网络。（通过调用另外一个配置文件prototxt来进行）
+
 2.     通过forward和backward迭代的进行优化来跟新参数。
+
 3.     定期的评价测试网络。 （可设定多少次训练后，进行一次测试）
+
 4.     在优化过程中显示模型和solver的状态
+
 在每一次的迭代过程中，solver做了这几步工作：
+
 1、调用forward算法来计算最终的输出值，以及对应的loss
+
 2、调用backward算法来计算每层的梯度
+
 3、根据选用的slover方法，利用梯度进行参数更新
+
 4、记录并保存每次迭代的学习率、快照，以及对应的状态。
+
 接下来，我们先来看一个实例：
 
 ```
@@ -735,7 +887,9 @@ net: "examples/mnist/lenet_train_test.prototxt"
 ```
 
 设置深度网络模型。每一个模型就是一个net，需要在一个专门的配置文件中对net进行配置，每个net由许多的layer所组成。
+
 注意的是：文件的路径要从caffe的根目录开始，其它的所有配置都是这样。
+
 也可用train_net和test_net来对训练模型和测试模型分别设定。例如：
 
 ```
@@ -765,15 +919,25 @@ power: 0.75
 ```
 
 这四行可以放在一起理解，用于学习率的设置。只要是梯度下降法来求解优化，都会有一个学习率，也叫步长。base_lr用于设置基础学习率，在迭代的过程中，可以对基础学习率进行调整。怎么样进行调整，就是调整的策略，由lr_policy来设置。
+
 lr_policy可以设置为下面这些值，相应的学习率的计算为：
+
 •	
+
 •	- fixed:　　 保持base_lr不变.
+
 •	- step: 　　 如果设置为step,则还需要设置一个stepsize,  返回 base_lr * gamma ^ (floor(iter / stepsize)),其中iter表示当前的迭代次数
+
 •	- exp:   　　返回base_lr * gamma ^ iter， iter为当前迭代次数
+
 •	- inv:　　    如果设置为inv,还需要设置一个power, 返回base_lr * (1 + gamma * iter) ^ (- power)
+
 •	- multistep: 如果设置为multistep,则还需要设置一个stepvalue。这个参数和step很相似，step是均匀等间隔变化，而multistep则是根据                                 stepvalue值变化
+
 •	- poly: 　　  学习率进行多项式误差, 返回 base_lr (1 - iter/max_iter) ^ (power)
+
 •	- sigmoid:　学习率进行sigmod衰减，返回 base_lr ( 1/(1 + exp(-gamma * (iter - stepsize))))
+
 multistep示例：
 
 ```
@@ -828,7 +992,9 @@ snapshot_prefix: "examples/mnist/lenet"
 ```
 
 快照。将训练出来的model和solver状态进行保存，snapshot用于设置训练多少次后进行保存，默认为0，不保存。snapshot_prefix设置保存路径。
+
 还可以设置snapshot_diff，是否保存梯度值，默认为false,不保存。
+
 也可以设置snapshot_format，保存的类型。有两种选择：HDF5 和BINARYPROTO ，默认为BINARYPROTO
 
 ```
@@ -842,17 +1008,25 @@ solver_mode: CPU
 ## solver优化方法
 
 上文提到，到目前为止，caffe总共提供了六种优化方法：
+
 •	Stochastic Gradient Descent (type: "SGD"),
+
 •	AdaDelta (type: "AdaDelta"),
+
 •	Adaptive Gradient (type: "AdaGrad"),
+
 •	Adam (type: "Adam"),
+
 •	Nesterov’s Accelerated Gradient (type: "Nesterov") and
+
 •	RMSprop (type: "RMSProp")
+
 Solver就是用来使loss最小化的优化方法。对于一个数据集D，需要优化的目标函数是整个数据集中所有数据loss的平均值。
 
 ![5](/public/img/posts/Caffe教程/3.png)
 
 其中，fW(x(i))计算的是数据x(i)上的loss, 先将每个单独的样本x的loss求出来，然后求和，最后求均值。 r(W)是正则项（weight_decay)，为了减弱过拟合现象。
+
 如果采用这种Loss 函数，迭代一次需要计算整个数据集，在数据集非常大的这情况下，这种方法的效率很低，这个也是我们熟知的梯度下降采用的方法。
 
 在实际中，通过将整个数据集分成几批（batches), 每一批就是一个mini-batch，其数量（batch_size)为N<<|D|，此时的loss 函数为：
@@ -860,6 +1034,7 @@ Solver就是用来使loss最小化的优化方法。对于一个数据集D，需
 ![6](/public/img/posts/Caffe教程/4.png)
 
 有了loss函数后，就可以迭代的求解loss和梯度来优化这个问题。在神经网络中，用forward pass来求解loss，用backward pass来求解梯度。
+
 在caffe中，默认采用的Stochastic Gradient Descent（SGD）进行优化求解。后面几种方法也是基于梯度的优化方法（like SGD），因此本文只介绍一下SGD。其它的方法，有兴趣的同学，可以去看文献原文。
 
 ### 1、Stochastic gradient descent（SGD)
@@ -871,8 +1046,11 @@ Solver就是用来使loss最小化的优化方法。对于一个数据集D，需
 其中，$\alpha $是负梯度的学习率(base_lr)，$\mu $ 是上一次梯度值的权重（momentum），用来加权之前梯度方向对现在梯度下降方向的影响。这两个参数需要通过tuning来得到最好的结果，一般是根据经验设定的。如果你不知道如何设定这些参数，可以参考相关的论文。
 
 在深度学习中使用SGD，比较好的初始化参数的策略是把学习率设为0.01左右（base_lr: 0.01)，在训练的过程中，如果loss开始出现稳定水平时，对学习率乘以一个常数因子（gamma），这样的过程重复多次。
+
 对于momentum，一般取值在0.5--0.99之间。通常设为0.9，momentum可以让使用SGD的深度学习方法更加稳定以及快速。
+
 关于更多的momentum，请参看Hinton的《A Practical Guide to Training Restricted Boltzmann Machines》。  
+
 实例： 
 
 ```
@@ -885,13 +1063,19 @@ momentum: 0.9
 ```
 
 lr_policy设置为step,则学习率的变化规则为 base_lr * gamma ^ (floor(iter / stepsize))
+
 即前1000次迭代，学习率为0.01; 第1001-2000次迭代，学习率为0.001; 第2001-3000次迭代，学习率为0.00001，第3001-3500次迭代，学习率为10-5  
+
 上面的设置只能作为一种指导，它们不能保证在任何情况下都能得到最佳的结果，有时候这种方法甚至不work。如果学习的时候出现diverge（比如，你一开始就发现非常大或者NaN或者inf的loss值或者输出），此时你需要降低base_lr的值（比如，0.001），然后重新训练，这样的过程重复几次直到你找到可以work的base_lr。
 
 ### 2、AdaDelta
+
 AdaDelta是一种”鲁棒的学习率方法“，是基于梯度的优化方法（like SGD）。
+
 具体的介绍文献：
+
 M. Zeiler ADADELTA: AN ADAPTIVE LEARNING RATE METHOD. arXiv preprint, 2012.
+
 示例：
 
 ```
@@ -916,8 +1100,11 @@ delta: 1e-6
 ### 3、AdaGrad
 
 自适应梯度（adaptive gradient）是基于梯度的优化方法（like SGD）
+
 具体的介绍文献：
+
 Duchi, E. Hazan, and Y. Singer. Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. The Journal of Machine Learning Research, 2011.
+
 示例：
 
 ```
@@ -942,15 +1129,21 @@ type: "AdaGrad"
 
 ### 4、Adam
 
+
 是一种基于梯度的优化方法（like SGD）。
- 具体的介绍文献：
+
+具体的介绍文献：
+
 D. Kingma, J. Ba. Adam: A Method for Stochastic Optimization. International Conference for Learning Representations, 2015.
 
 ### 5、NAG
 
 Nesterov 的加速梯度法（Nesterov’s accelerated gradient）作为凸优化中最理想的方法，其收敛速度非常快。
- 具体的介绍文献：
- I. Sutskever, J. Martens, G. Dahl, and G. Hinton. On the Importance of Initialization and Momentum in Deep Learning. Proceedings of the 30th International Conference on Machine Learning, 2013.
+
+具体的介绍文献：
+
+I. Sutskever, J. Martens, G. Dahl, and G. Hinton. On the Importance of Initialization and Momentum in Deep Learning. Proceedings of the 30th International Conference on Machine Learning, 2013.
+
 示例：
 
 ```
@@ -979,9 +1172,12 @@ type: "Nesterov"
 ### 6、RMSprop
 
 RMSprop是Tieleman在一次 Coursera课程演讲中提出来的，也是一种基于梯度的优化方法（like SGD）
+
 具体的介绍文献：
+
 T. Tieleman, and G. Hinton. RMSProp: Divide the gradient by a running average of its recent magnitude. COURSERA: Neural Networks for Machine Learning.Technical report, 2012.
- 示例：
+
+示例：
 
  ```
  net: "examples/mnist/lenet_train_test.prototxt"
