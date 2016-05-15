@@ -15,7 +15,7 @@ $$Loss=-\frac{1}{m}\sum_{i=1}^{m}y_{i}{}'logf\left ( x_{i} \right )+\lambda\sum_
 
 ## 问题一：求输出层的误差敏感项。
 
-现在只考虑个一个输入样本$\left( {x,y} \right)$的情形，loss函数和上面的公式类似是用交叉熵来表示的，暂时不考虑权值规则项，样本标签采用one-hot编码，CNN网络的最后一层采用softmax全连接(多分类时输出层一般用softmax)，样本$\left( {x,y} \right)$经过CNN网络后的最终的输出用$f\left( {x} \right)$表示，则对应该样本的loss值为:
+现在只考虑一个输入样本$\left( {x,y} \right)$的情形，loss函数和上面的公式类似是用交叉熵来表示的，暂时不考虑权值规则项，样本标签采用one-hot编码，CNN网络的最后一层采用softmax全连接(多分类时输出层一般用softmax)，样本$\left( {x,y} \right)$经过CNN网络后的最终的输出用$f\left( {x} \right)$表示，则对应该样本的loss值为:
 
 ![1](/public/img/posts/CNN反向传播/1.png)
 
@@ -32,7 +32,7 @@ $$f{\left( x \right)_c} = p\left( {y = c|x} \right)$$
 
 ![3](/public/img/posts/CNN反向传播/3.png)
 
-由上面公式可知，如果输出层采用sfotmax，且loss用交叉熵形式，则最后一层的误差敏感值就等于CNN网络输出值$f\left( {x} \right)$减样本标签值$e\left( y \right)$,即$f\left( {x} \right)-e\left( y \right)$，其形式非常简单，这个公式是不是很眼熟？很多情况下如果model采用MSE的loss，即$loss=\frac{1}{2}\left ( e\left ( y \right ) -f\left ( x \right )\right )^{2}$,那么loss对最终的输出$f\left( {x} \right)$求导时其结果就是$f\left({x} \right)-e\left( y \right)$，虽然和上面的结果一样，但是大家不要搞混淆了，这2个含义是不同的，一个是对输出层节点输入值的导数(softmax激发函数)，一个是对输出层节点输出值的导数(任意激发函数）。而在使用MSE的loss表达式时，输出层的误差敏感项为\left ( f\left({x} \right)-e\left( y \right) \right ).*f\left ( x \right ){}'，两者只相差一个因子。
+由上面公式可知，如果输出层采用sfotmax，且loss用交叉熵形式，则最后一层的误差敏感值就等于CNN网络输出值$f\left( {x} \right)$减样本标签值$e\left( y \right)$,即$f\left( {x} \right)-e\left( y \right)$，其形式非常简单，这个公式是不是很眼熟？很多情况下如果model采用MSE的loss，即$loss=\frac{1}{2}\left ( e\left ( y \right ) -f\left ( x \right )\right )^{2}$,那么loss对最终的输出$f\left( {x} \right)$求导时其结果就是$f\left({x} \right)-e\left( y \right)$，虽然和上面的结果一样，但是大家不要搞混淆了，这2个含义是不同的，一个是对输出层节点输入值的导数(softmax激发函数)，一个是对输出层节点输出值的导数(任意激发函数）。而在使用MSE的loss表达式时，输出层的误差敏感项为$\left ( f\left({x} \right)-e\left( y \right) \right ).*f\left ( x \right ){}'$，两者只相差一个因子。
 
 这样就可以求出第L层的权值W的偏导数：
 
@@ -46,7 +46,7 @@ $$f{\left( x \right)_c} = p\left( {y = c|x} \right)$$
 
 ## 问题二：当接在卷积层的下一层为pooling层时，求卷积层的误差敏感项。
 
-假设第l(小写的l，不要看成数字’1’了)层为卷积层，第l+1层为pooling层，且pooling层的误差敏感项为：
+假设第$l$(小写的$l$，不要看成数字’1’了)层为卷积层，第$l+1$层为pooling层，且pooling层的误差敏感项为：
 
 $$\delta _{j}^{l+1}$$
 
@@ -144,4 +144,12 @@ $$h\left ( a_{j}^{l} \right ){}'$$
 
 为什么采用矩阵的相关操作就可以实现这个功能呢？由bp算法可知，$l$层$i$和$l+1$层$j$之间的权值等于$l+1$层$j$处误差敏感值乘以$l$层$i$处的输入，而$j$中某个节点因为是由$i+1$中一个区域与权值卷积后所得，所以$j$处该节点的误差敏感值对权值中所有元素都有贡献，由此可见，将$j$中每个元素对权值的贡献(尺寸和核大小相同)相加，就得到了权值的偏导数了(这个例子的结果是由9个2×2大小的矩阵之和)，同样，如果大家动笔去推算一下，就会明白这时候为什么可以用带’valid’的conv2()完成此功能。
 
-下一篇博客将解释为什么网络正向传播是feature map和卷积核相关（卷积）操作，而反向传播时候需要卷积（相关）操作
+接下来将单独写一篇博客解释为什么网络正向传播是feature map和卷积核相关（卷积）操作，而反向传播时候需要卷积（相关）操作
+
+## 总结
+
+反向传播过程中，如果前向传播使用的相关滤波器。反向传播时，针对当前层是卷积层时：
+
+### 前一层的feature map的$\delta$值等于当前层feature map的$\delta$值卷积操作当前层的相关滤波器（或者表述为后一层feature map的$\delta$值相关操作前后左右翻转当前层的相关滤波器）。
+
+### 当前层的滤波器$\delta$更新等于前一层的feature map的值和当前层feature map的$\delta$值的相关操作。
