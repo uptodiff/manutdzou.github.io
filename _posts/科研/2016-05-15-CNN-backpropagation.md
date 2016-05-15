@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: CNN反向传播
 category: 科研
@@ -29,3 +29,5 @@ $$f{\left( x \right)_c} = p\left( {y = c|x} \right)$$
 
 其中$e\left( y \right)$表示的是样本$x$标签值的one-hot表示，其中只有一个元素为1,其它都为0.
 其推导过程如下（先求出对输出层某个节点c的误差敏感性，参考Larochelle关于DL的课件:Output layer gradient）,求出输出层中c节点的误差敏感值：
+
+![3](/public/img/posts/CNN反向传播/3.png)
