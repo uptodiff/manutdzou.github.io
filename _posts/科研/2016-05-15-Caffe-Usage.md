@@ -1132,7 +1132,8 @@ layer {
 把均值文件（mean_file)、数据源文件(source)、批次大小(batch_size)和数据源格式（backend)这四项作相应的修改
 
 2、修改test阶段的data层：
- 
+
+``` 
 layer {
   name: "data"
   type: "Data"
@@ -1152,10 +1153,11 @@ layer {
     backend: LMDB
   }
 }
- 
+```
 
 3、修改最后一个全连接层（fc8)：
- 
+
+```
 layer {
   name: "fc8-my"               #原来为"fc8"
   type: "InnerProduct"
@@ -1181,7 +1183,8 @@ layer {
     }
   }
 }
- 
+```
+
 看注释的地方，就只有两个地方修改，其它不变。
 
 设置好后，就可以开始微调了(fine tuning).
