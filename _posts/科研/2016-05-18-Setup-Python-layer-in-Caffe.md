@@ -168,11 +168,11 @@ class EuclideanLossLayer(caffe.Layer):
 
 Pyloss.py主要计算特征和one_hot类别的Euclidean loss。setup函数检查是否输入2个bottom，reshape函数检查两个bottom尺寸是否匹配，并初始化回传的diff。forward函数计算梯度值和loss，backward函数计算反传梯度敏感值（propagate_down这参数在哪里设置）。具体推导如下：
 
-$$loss = \frac{1}{{batch}}\sum\limits_i^{batch} {\frac{1}{2}{{\left\| {ip{2_i} - one{\rm{ - }}ho{t_i}} \right\|}^2}}$$
+$$loss=\frac{1}{batch}\sum_{i}^{batch}\frac{1}{2}\left \| ip2_{i}-one-hot_{i} \right \|^{2}$$
 
-$$\frac{{\partial loss}}{{\partial ip{2_i}}} = \frac{1}{{batch}}\left( {p{2_i} - one{\rm{ - }}ho{t_i}} \right)$$
+$$\frac{\partial loss}{\partial ip2_{i}}=\frac{1}{batch}\left ( ip2_{i}-one-hot_{i} \right )$$
 
-$$\frac{{\partial loss}}{{\partial one{\rm{ - }}ho{t_i}}} = \frac{{{\rm{ - }}1}}{{batch}}\left( {p{2_i} - one{\rm{ - }}ho{t_i}} \right)$$
+$$\frac{\partial loss}{\partial one-hot_{i}}=\frac{-1}{batch}\left ( ip2_{i}-one-hot_{i} \right )$$
 
 由于one-hot是类别标签不需要回传梯度所以只需要计算第一个bottom的梯度，range设为1就行，第二个直接忽略（But why propagate[1]也是true）
 
