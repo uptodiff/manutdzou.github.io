@@ -13,7 +13,7 @@ description:
 
 1）在./src/caffe/proto/caffe.proto 中增加对应layer的paramter message；
 
-2）在./include/caffe/***layers.hpp中增加该layer的类的声明，***表示有 common_layers.hpp, data_layers.hpp, neuron_layers.hpp, vision_layers.hpp 和loss_layers.hpp等；
+2）在./include/caffe/XXXlayers.hpp中增加该layer的类的声明，XXX表示有 common_layers.hpp, data_layers.hpp, neuron_layers.hpp, vision_layers.hpp 和loss_layers.hpp等；
 
 3）在./src/caffe/layers/目录下新建.cpp和.cu文件，进行类实现;
 
@@ -25,9 +25,9 @@ description:
 
 ![1](/public/img/posts/Caffe C++ layer/1.png)
 
-如上图所示，triplet是一个三元组，这个三元组是这样构成的：从训练数据集中随机选一个样本，该样本称为Anchor，然后再随机选取一个和 Anchor (记为x_a)属于同一类的样本和不同类的样本，这两个样本对应的称为Positive (记为$x_{p$}) 和Negative (记为$x_{n}$)，由此构成一个（Anchor，Positive，Negative）三元组。
+如上图所示，triplet是一个三元组，这个三元组是这样构成的：从训练数据集中随机选一个样本，该样本称为Anchor，然后再随机选取一个和 Anchor (记为x_a)属于同一类的样本和不同类的样本，这两个样本对应的称为Positive (记为$x_{p}$) 和Negative (记为$x_{n}$)，由此构成一个（Anchor，Positive，Negative）三元组。
 
-有了上面的triplet的概念， triplet loss就好理解了。针对三元组中的每个元素（样本），训练一个参数共享或者不共享的网络，得到三个元素的特征表达，分别记为：$f\left ( x_{i}^{a} \right )$,$f\left ( x_{i}^{p} \right )$,f\left ( x_{i}^{n} \right )。triplet loss的目的就是通过学习，让$x_{a}$和$x_{p}$特征表达之间的距离尽可能小，而$x_{a}$和$x_{n}$的特征表达之间的距离尽可能大，并且要让$x_{a}$与$x_{n}$之间的距离和$x_{a}$与$x_{p}$之间的距离之间有一个最小的间隔$\alpha$。公式化的表示就是：
+有了上面的triplet的概念， triplet loss就好理解了。针对三元组中的每个元素（样本），训练一个参数共享或者不共享的网络，得到三个元素的特征表达，分别记为：$f\left ( x_{i}^{a} \right )$,$f\left ( x_{i}^{p} \right )$,$f\left ( x_{i}^{n} \right )$。triplet loss的目的就是通过学习，让$x_{a}$和$x_{p}$特征表达之间的距离尽可能小，而$x_{a}$和$x_{n}$的特征表达之间的距离尽可能大，并且要让$x_{a}$与$x_{n}$之间的距离和$x_{a}$与$x_{p}$之间的距离之间有一个最小的间隔$\alpha$。公式化的表示就是：
 
 ![2](/public/img/posts/Caffe C++ layer/2.png)
 
@@ -39,17 +39,17 @@ description:
 
 由目标函数可以看出:
 
-1)当$x_{a}$与$x_{n}$之间的距离 $< x_{a}$与$x_{p}$之间的距离加$\alpha$时，[]内的值大于零，就会产生损失。
+1)当$x_{a}$与$x_{n}$之间的距离小于$x_{a}$与$x_{p}$之间的距离加$\alpha$时，[]内的值大于零，就会产生损失。
 
-2)当$x_{a}$与$x_{n}$之间的距离 $\geqslant x_{a}$与$x_{p}$之间的距离加$\alpha$时，损失为零。
+2)当$x_{a}$与$x_{n}$之间的距离大于等于$x_{a}$与$x_{p}$之间的距离加$\alpha$时，损失为零。
 
-triplet loss 梯度推导
+triplet loss 梯度推导：
 
 上述目标函数记为$L$。则当第$i$个triplet损失大于零的时候，仅就上述公式而言，有：
 
 ![4](/public/img/posts/Caffe C++ layer/4.png)
 
-算法实现Trick
+算法实现Trick：
 
 可以看到，对$x_{p}$和$x_{n}$特征表达的梯度刚好利用了求损失时候的中间结果，给的启示就是，如果在CNN中实现 triplet loss layer, 如果能够在前向传播中存储着两个中间结果，反向传播的时候就能避免重复计算。这仅仅是算法实现时候的一个Trick。
 
@@ -559,7 +559,7 @@ TYPED_TEST(TripletLossLayerTest,TestGradient) {
 }  // namespace caffe
 ```
 
-这个写法主要适合老版本的Caffe，新版本的Caffe每个layer实现都有一个.cpp与.hpp相对应，不过写法都是一样的。
+这个写法主要适合老版本的Caffe，新版本的Caffe每个layer实现都有一个.cpp与.hpp相对应，不过步骤都是一致的。
 
 
 
