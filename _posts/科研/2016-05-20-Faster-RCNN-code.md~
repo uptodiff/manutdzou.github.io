@@ -1451,9 +1451,9 @@ class AnchorTargetLayer(caffe.Layer):
             np.ascontiguousarray(gt_boxes, dtype=np.float))#计算所有anchors和gt boxes的覆盖率
         argmax_overlaps = overlaps.argmax(axis=1)#每个anchors最大的overlap对应gt boxes的index
         max_overlaps = overlaps[np.arange(len(inds_inside)), argmax_overlaps]#每个anchors最大overlap对应gt boxes的index的overlap值
-        gt_argmax_overlaps = overlaps.argmax(axis=0)#每个gt box最大覆盖率的index
+        gt_argmax_overlaps = overlaps.argmax(axis=0)#最大覆盖率的index
         gt_max_overlaps = overlaps[gt_argmax_overlaps,
-                                   np.arange(overlaps.shape[1])]#每个gt box最大的覆盖率值
+                                   np.arange(overlaps.shape[1])]#最大的覆盖率值
         gt_argmax_overlaps = np.where(overlaps == gt_max_overlaps)[0]
 
         if not cfg.TRAIN.RPN_CLOBBER_POSITIVES:
