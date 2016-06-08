@@ -13,7 +13,7 @@ description:
 
 ## 训练好的模型如何测试
 
-SSD给出了一个VideoData的层用于读取摄像头视频进行检测，现在修改这个layer使他支持本地视频检测，首先需要修改的是caffe.proto里的layer定义
+SSD给出了一个VideoData的层用于读取摄像头视频进行检测，现在修改这个layer使它支持本地视频检测，首先需要修改的是caffe.proto里的layer定义
 
 ```
 message VideoDataParameter{
@@ -362,7 +362,7 @@ import numpy as np
 import cv2
 import time
 
-#定义一个计间的类用于测试计算时间
+#定义一个计时的类用于测试计算时间
 class Timer(object):
     """A simple timer."""
     def __init__(self):
@@ -492,7 +492,7 @@ transformer.set_transpose('data', (2,0,1))  # move image channels to outermost d
 transformer.set_mean('data', mu)            # subtract the dataset-mean value in each channel
 transformer.set_raw_scale('data', 255)      # rescale from [0, 1] to [0, 255]
 transformer.set_channel_swap('data', (2,1,0))  # swap channels from RGB to BGR
-net.blobs['data'].reshape(1,3,270, 480)
+net.blobs['data'].reshape(1,3,270, 480)#可作适当调整
 
 test_image_path=caffe_root+'data/KITTI/training/data_object_image_2/testing/image_2'
 color=[(255,0,0),(0,255,0),(0,0,255)]
