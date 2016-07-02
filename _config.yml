@@ -14,8 +14,8 @@ description: My personal blog
 rss_url: /pages/atom.xml
 
 # gavatar头像及Favicon
-gavatar: /public/img/tony.jpg
-favicon: /public/img/tony.jpg
+gavatar: /public/img/MS.JPG
+favicon: /public/img/MS.JPG
 
 # google analytics 设置
 ga:
