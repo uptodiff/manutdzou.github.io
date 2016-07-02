@@ -17,6 +17,6 @@ description:
 
 最后祝愿我的导师科研事业取得更多辉煌，祝愿517实验室的师弟师妹们学业顺利，在研究生生涯能过得快乐。
 
-![1](/public/img/posts/master/_MG_5817.JPG)
+![1](/public/img/posts/master/1.JPG)
 
-![2](/public/img/posts/master/_MG_5815.JPG)
+![2](/public/img/posts/master/2.JPG)
