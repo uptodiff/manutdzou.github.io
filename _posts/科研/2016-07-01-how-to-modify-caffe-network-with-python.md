@@ -9,6 +9,140 @@ description:
 
 # Caffe提供了用python来写网络配置的接口net_spec.py
 
+需要的库
+
+```Python
+import caffe
+from caffe import layers as L
+from caffe import params as P
+```
+
+使用pycaffe定义的net:
+
+```Python
+n = caffe.NetSpec()
+```
+
+定义DataLayer
+
+```Python
+n.data, n.label = L.Data(batch_size=batch_size,
+                         backend=P.Data.LMDB, source=lmdb,
+                         transform_param=dict(scale=1. / 255), ntop=2)
+# 效果如下：
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  transform_param {
+    scale: 0.00392156862745
+  }
+  data_param {
+    source: "mnist/mnist_train_lmdb"
+    batch_size: 64
+    backend: LMDB
+  }
+}
+```
+
+定义ConvolutionLayer
+
+```Python
+n.conv1 = L.Convolution(n.data, kernel_size=5,
+                        num_output=20, weight_filler=dict(type='xavier'))
+
+# 效果如下：
+
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  convolution_param {
+    num_output: 20
+    kernel_size: 5
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+```
+
+定义PoolingLayer
+
+```Python
+n.pool1 = L.Pooling(n.conv1, kernel_size=2,
+                    stride=2, pool=P.Pooling.MAX)
+
+# 效果如下：
+
+layer {
+  name: "pool1"
+  type: "Pooling"
+  bottom: "conv1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+```
+
+定义InnerProductLayer
+
+```Python
+n.ip1 = L.InnerProduct(n.pool2, num_output=500,
+                       weight_filler=dict(type='xavier'))
+
+# 效果如下：
+
+layer {
+  name: "ip1"
+  type: "InnerProduct"
+  bottom: "pool2"
+  top: "ip1"
+  inner_product_param {
+    num_output: 500
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+```
+
+定义ReluLayer
+
+```Python
+n.relu1 = L.ReLU(n.ip1, in_place=True)
+
+# 效果如下：
+
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "ip1"
+  top: "ip1"
+}
+```
+
+定义SoftmaxWithLossLayer
+
+```Python
+n.loss = L.SoftmaxWithLoss(n.ip2, n.label)
+
+# 效果如下：
+
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "ip2"
+  bottom: "label"
+  top: "loss"
+}
+```
+
 下面是一个cifar的小网络示例
 
 ```Python
