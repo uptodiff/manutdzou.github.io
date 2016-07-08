@@ -7,14 +7,14 @@ keywords: source code
 description: 
 ---
 
-#分析voc2007检测数据在faster-rcnn上的rpn anchor的recall和proposal的recall
+# 分析voc2007检测数据在faster-rcnn上的rpn anchor的recall和proposal的recall
 
 科研过程是一个漫长而谨慎的环节，可谓得细节者的天下。所以细节分析成为科研领域一个很重要的突破口。下面针对faster-rcnn在voc2007检测数据上的表现分析一下算法的瓶颈。需要计算初始化anchor的recall,RPN网络proposal的recall
 
 首先需要存储训练数据训练过程中的rpn的acnhors和训练过程中的生成的proposals，这些数据在开源程序中都有保存
 其次需要保存测试过程中RPN网络生成的proposals，这在源码中并未提供需要自己部分修改保存
 
-#保存test的proposal,将以下修改代码替换源码
+# 保存test的proposal,将以下修改代码替换源码
 
 ```Python
 
@@ -326,7 +326,7 @@ def test_net(net, imdb):
     imdb.evaluate_detections(nms_dets, output_dir)
 ```
 
-voc2007检测数据代码
+# voc2007检测数据代码
 
 ```Python
 # --------------------------------------------------------
