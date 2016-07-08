@@ -9,7 +9,7 @@ description:
 
 # 分析voc2007检测数据在faster-rcnn上的rpn anchor的recall和proposal的recall
 
-科研过程是一个漫长而谨慎的环节，可谓得细节者的天下。所以细节分析成为科研领域一个很重要的突破口。下面针对faster-rcnn在voc2007检测数据上的表现分析一下算法的瓶颈。需要计算初始化anchor的recall,RPN网络proposal的recall
+科研过程是一个漫长而谨慎的环节，可谓得细节者得天下。所以细节分析成为科研领域一个很重要的突破口。下面针对faster-rcnn在voc2007检测数据上的表现分析一下算法的瓶颈。需要计算初始化anchor的recall,RPN网络proposal的recall
 
 首先需要存储训练数据训练过程中的rpn的acnhors和训练过程中的生成的proposals，这些数据在开源程序中都有保存
 其次需要保存测试过程中RPN网络生成的proposals，这在源码中并未提供需要自己部分修改保存
@@ -326,7 +326,7 @@ def test_net(net, imdb):
     imdb.evaluate_detections(nms_dets, output_dir)
 ```
 
-# voc2007检测数据代码
+# voc2007检测数据分析代码
 
 ```Python
 # --------------------------------------------------------
@@ -698,6 +698,6 @@ test set proposal recall:
 0.99833775  0.99484706  0.9877826   0.97473407  0.95071477  0.89702457 0.74459773  0.32829124  0.03565492  0 
 ```
 
-#总结
+# 总结
 
 实验表明在voc2007检测任务中，RPN在IOU为0.5时proposal的recall为95%以上，但检测结果为69mAP，这表明算法的瓶颈在分类问题上。
