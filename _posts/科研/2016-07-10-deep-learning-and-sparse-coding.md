@@ -33,7 +33,7 @@ $Y^{k}$是k-iteration的输出，$L_{1}$,$L_{2}$,$N$是三个变换算子。这�
 
 所以带卷积情况下的带正则项的回归问题为：
 
-$$Y=argmin\left \| X-\sum_{i}F_{i}*Z \right \|^{2}+\sum_{i}r\left ( Z_{i} \right )\right$$
+$$Y=argmin\left \| X-\sum_{i}F_{i}\ast Z \right \|^{2}+\sum_{i}\gamma \left ( Z_{i} \right )$$
 
 这一问题的形式，解法和结论都和前面的线性回归模型相仿。事实上，线性回归模型的结论将自然对应DNN的全连接层，而卷积回归模型的结论将对应到DNN的卷积层。
 
@@ -53,11 +53,11 @@ $$Y^{k+1}=N\left ( L_{1}\left ( X \right )+L_{2}\left ( Y^{k} \right ) \right ),
 
 既然ReLU很强大，所以加入稀疏框架中，对$Y$加一个非负约束：
 
-$$Y=argmin\left \| X-DY \right \|^{2}+c\left \| Y \right \|_{1},Y\geqslant 0$$
+$$Y=argmin\left \| X-DY \right \|^{2}+c\left \| Y \right \|_{1},Y\geq 0$$
 
 这一约束的直接效果是把软门限算子的负半侧砍掉归0。进一步，我们可以把原本软门限算子中的门限参数c，移到线性变换当中。最后迭代形式里：
 
-L_{1}\left ( X \right )=D^{T}X,L_{2}\left ( Y^\left ( k \right )\right )=\left ( I-D^{T}D \right )Y^{k},N=ReLU
+$$L_{1}\left ( X \right )=D^{T}X,L_{2}\left ( Y^\left ( k \right )\right )=\left ( I-D^{T}D \right )Y^{k},N=ReLU$$
 
 ![4](/public/img/posts/deep learning and sparse codeing/4.png)
 
