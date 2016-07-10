@@ -3,7 +3,7 @@ layout: post
 title: 深度学习中的稀疏编码思想
 category: 科研
 tags: 深度学习
-keywords: 数学理论
+keywords: 理论
 description: 
 ---
 
