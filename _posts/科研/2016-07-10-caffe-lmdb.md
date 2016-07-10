@@ -1,19 +1,19 @@
 ---
 layout: post
-title: ÀûÓÃcaffeÓëlmdb¶ÁĞ´Í¼ÏñÊı¾İ
-category: ¿ÆÑĞ
-tags: Éî¶ÈÑ§Ï°
+title: åˆ©ç”¨caffeä¸lmdbè¯»å†™å›¾åƒæ•°æ®
+category: ç§‘ç ”
+tags: æ·±åº¦å­¦ä¹ 
 keywords: source code
 description: 
 ---
 
-# ¼ò½é
+# ç®€ä»‹
 
-lmdbÊÇÒ»ÖÖÇáÁ¿¼¶µÄÊı¾İ¿â£¬caffeÖĞÖ÷Òª¾ÍÊÇÊ¹ÓÃlmdbÄ£¿éÀ´½øĞĞÍ¼ÏñÊı¾İ¼¯µÄ±£´æ¡£¾İËµÊÇÒòÎªlmdbÓĞ¶ÁÈ¡ËÙ¶È¿ì£¬Ö§³Ö¶àÏß³Ì¡¢¶à½ø³Ì²¢·¢£¬µÈÕâÑùÄÇÑùµÄÓÅµã£¬×¢Òâµ½Õâ¸öÊı¾İ¿âÆäÊµ²¢Ã»ÓĞÈÎºÎÑ¹Ëõ´¦ÀíµÄ×÷ÓÃ£¬ËüµÄÄ¿µÄÖ»ÊÇÎªÁË¿ìËÙµÄË÷ÒıºÍ´æÈ¡¡£ËüµÄÊı¾İ¶¼»á´ø×ÅÒ»¶¨µÄÊı¾İ½á¹¹´Ó¶øÊ¹Ìå»ıÂÔÎ¢Ôö´ó¡£
+lmdbæ˜¯ä¸€ç§è½»é‡çº§çš„æ•°æ®åº“ï¼Œcaffeä¸­ä¸»è¦å°±æ˜¯ä½¿ç”¨lmdbæ¨¡å—æ¥è¿›è¡Œå›¾åƒæ•°æ®é›†çš„ä¿å­˜ã€‚æ®è¯´æ˜¯å› ä¸ºlmdbæœ‰è¯»å–é€Ÿåº¦å¿«ï¼Œæ”¯æŒå¤šçº¿ç¨‹ã€å¤šè¿›ç¨‹å¹¶å‘ï¼Œç­‰è¿™æ ·é‚£æ ·çš„ä¼˜ç‚¹ï¼Œæ³¨æ„åˆ°è¿™ä¸ªæ•°æ®åº“å…¶å®å¹¶æ²¡æœ‰ä»»ä½•å‹ç¼©å¤„ç†çš„ä½œç”¨ï¼Œå®ƒçš„ç›®çš„åªæ˜¯ä¸ºäº†å¿«é€Ÿçš„ç´¢å¼•å’Œå­˜å–ã€‚å®ƒçš„æ•°æ®éƒ½ä¼šå¸¦ç€ä¸€å®šçš„æ•°æ®ç»“æ„ä»è€Œä½¿ä½“ç§¯ç•¥å¾®å¢å¤§ã€‚
 
-ÊÂÊµÉÏÈç¹û½ö½ö¿´lmdbµÄÓÃ·¨ÊÇÎŞ·¨Ö±½ÓÓ¦ÓÃÓÚÍ¼ÏñÎÄ¼şµÄ´¦ÀíµÄ¡£ÓÉÓÚcaffeÊÇ½«Í¼ÏñÒÔËü×Ô´øµÄÊı¾İÀàĞÍµÄĞÎÊ½´«ÈëlmdbÖĞµÄ£¬Òò´ËÎÒÃÇ±ØĞë½áºÏcaffeµÄÊı¾İÀàĞÍ²ÅÄÜÍê³É¶ÁÈ¡ºÍÊ¹ÓÃ¡£
+äº‹å®ä¸Šå¦‚æœä»…ä»…çœ‹lmdbçš„ç”¨æ³•æ˜¯æ— æ³•ç›´æ¥åº”ç”¨äºå›¾åƒæ–‡ä»¶çš„å¤„ç†çš„ã€‚ç”±äºcaffeæ˜¯å°†å›¾åƒä»¥å®ƒè‡ªå¸¦çš„æ•°æ®ç±»å‹çš„å½¢å¼ä¼ å…¥lmdbä¸­çš„ï¼Œå› æ­¤æˆ‘ä»¬å¿…é¡»ç»“åˆcaffeçš„æ•°æ®ç±»å‹æ‰èƒ½å®Œæˆè¯»å–å’Œä½¿ç”¨ã€‚
 
-# Éú³ÉÊı¾İÎÄ¼ş
+# ç”Ÿæˆæ•°æ®æ–‡ä»¶
 
 ```Python
 #coding:utf-8
@@ -24,37 +24,37 @@ import caffe
 from caffe.proto import caffe_pb2 
  
 #basic setting
-lmdb_file = 'lmdb_data'#ÆÚÍûÉú³ÉµÄÊı¾İÎÄ¼ş
-batch_size = 200       #lmdb¶ÔÓÚÊı¾İ½øĞĞµÄÊÇÏÈ»º´æºóÒ»´ÎĞÔĞ´Èë´Ó¶øÌá¸ßĞ§ÂÊ£¬Òò´Ë¶¨ÒåÒ»¸öbatch_size¿ØÖÆÃ¿´ÎĞ´ÈëµÄÁ¿¡£
+lmdb_file = 'lmdb_data'#æœŸæœ›ç”Ÿæˆçš„æ•°æ®æ–‡ä»¶
+batch_size = 200       #lmdbå¯¹äºæ•°æ®è¿›è¡Œçš„æ˜¯å…ˆç¼“å­˜åä¸€æ¬¡æ€§å†™å…¥ä»è€Œæé«˜æ•ˆç‡ï¼Œå› æ­¤å®šä¹‰ä¸€ä¸ªbatch_sizeæ§åˆ¶æ¯æ¬¡å†™å…¥çš„é‡ã€‚
  
 # create the leveldb file
-lmdb_env = lmdb.open(lmdb_file, map_size=int(1e12))#Éú³ÉÒ»¸öÊı¾İÎÄ¼ş£¬¶¨Òå×î´ó¿Õ¼ä
-lmdb_txn = lmdb_env.begin(write=True)              #´ò¿ªÊı¾İ¿âµÄ¾ä±ú
-datum = caffe_pb2.Datum()                          #ÕâÊÇcaffeÖĞ¶¨ÒåÊı¾İµÄÖØÒªÀàĞÍ
+lmdb_env = lmdb.open(lmdb_file, map_size=int(1e12))#ç”Ÿæˆä¸€ä¸ªæ•°æ®æ–‡ä»¶ï¼Œå®šä¹‰æœ€å¤§ç©ºé—´
+lmdb_txn = lmdb_env.begin(write=True)              #æ‰“å¼€æ•°æ®åº“çš„å¥æŸ„
+datum = caffe_pb2.Datum()                          #è¿™æ˜¯caffeä¸­å®šä¹‰æ•°æ®çš„é‡è¦ç±»å‹
  
 for x in range(1000):
     x+=1
-    img=cv2.imread('A/'+str(x)+'.png').convert('RGB')     #´ÓA/ÎÄ¼ş¼ĞÖĞÒÀ´Î¶ÁÈ¡Í¼Ïñ
+    img=cv2.imread('A/'+str(x)+'.png').convert('RGB')     #ä»A/æ–‡ä»¶å¤¹ä¸­ä¾æ¬¡è¯»å–å›¾åƒ
  
     # save in datum
-    data = img.astype('int').transpose(2,0,1)      #Í¼Ïñ¾ØÕó£¬×¢ÒâĞèÒªµ÷½ÚÎ¬¶È
-    #data = np.array([img.convert('L').astype('int')]) #»òÕßÕâÑùÔö¼ÓÎ¬¶È
-    label = x                                      #Í¼ÏñµÄ±êÇ©£¬ÎªÁË·½±ã´æ´¢£¬Õâ¸ö±ØĞëÊÇÕûÊı¡£
-    datum = caffe.io.array_to_datum(data, label)   #½«Êı¾İÒÔ¼°±êÇ©ÕûºÏÎªÒ»¸öÊı¾İÏî
+    data = img.astype('int').transpose(2,0,1)      #å›¾åƒçŸ©é˜µï¼Œæ³¨æ„éœ€è¦è°ƒèŠ‚ç»´åº¦
+    #data = np.array([img.convert('L').astype('int')]) #æˆ–è€…è¿™æ ·å¢åŠ ç»´åº¦
+    label = x                                      #å›¾åƒçš„æ ‡ç­¾ï¼Œä¸ºäº†æ–¹ä¾¿å­˜å‚¨ï¼Œè¿™ä¸ªå¿…é¡»æ˜¯æ•´æ•°ã€‚
+    datum = caffe.io.array_to_datum(data, label)   #å°†æ•°æ®ä»¥åŠæ ‡ç­¾æ•´åˆä¸ºä¸€ä¸ªæ•°æ®é¡¹
  
-    keystr = '{:0>8d}'.format(x-1)                 #lmdbµÄÃ¿Ò»¸öÊı¾İ¶¼ÊÇÓÉ¼üÖµ¶Ô¹¹³ÉµÄ£¬Òò´ËÉú³ÉÒ»¸öÓÃµİÔöË³ĞòÅÅÁĞµÄ¶¨³¤Î¨Ò»µÄkey
-    lmdb_txn.put( keystr, datum.SerializeToString())#µ÷ÓÃ¾ä±ú£¬Ğ´ÈëÄÚ´æ¡£
+    keystr = '{:0>8d}'.format(x-1)                 #lmdbçš„æ¯ä¸€ä¸ªæ•°æ®éƒ½æ˜¯ç”±é”®å€¼å¯¹æ„æˆçš„ï¼Œå› æ­¤ç”Ÿæˆä¸€ä¸ªç”¨é€’å¢é¡ºåºæ’åˆ—çš„å®šé•¿å”¯ä¸€çš„key
+    lmdb_txn.put( keystr, datum.SerializeToString())#è°ƒç”¨å¥æŸ„ï¼Œå†™å…¥å†…å­˜ã€‚
  
     # write batch
-    if x % batch_size == 0:                        #Ã¿µ±ÀÛ¼Æµ½Ò»¶¨µÄÊı¾İÁ¿£¬±ãÓÃcommit·½·¨Ğ´ÈëÓ²ÅÌ¡£
+    if x % batch_size == 0:                        #æ¯å½“ç´¯è®¡åˆ°ä¸€å®šçš„æ•°æ®é‡ï¼Œä¾¿ç”¨commitæ–¹æ³•å†™å…¥ç¡¬ç›˜ã€‚
         lmdb_txn.commit()
-        lmdb_txn = lmdb_env.begin(write=True)      #commitÖ®ºó£¬Ö®Ç°µÄtxn¾Í²»ÄÜÓÃÁË£¬±ØĞëÖØĞÂ¿ªÒ»¸ö¡£
+        lmdb_txn = lmdb_env.begin(write=True)      #commitä¹‹åï¼Œä¹‹å‰çš„txnå°±ä¸èƒ½ç”¨äº†ï¼Œå¿…é¡»é‡æ–°å¼€ä¸€ä¸ªã€‚
         print 'batch {} writen'.format(x)
  
-lmdb_env.close()                                   #½áÊøºó¼Ç×¡ÊÍ·Å×ÊÔ´£¬·ñÔòÏÂ´ÎÓÃµÄÊ±ºò´ò²»¿ª¡£
+lmdb_env.close()                                   #ç»“æŸåè®°ä½é‡Šæ”¾èµ„æºï¼Œå¦åˆ™ä¸‹æ¬¡ç”¨çš„æ—¶å€™æ‰“ä¸å¼€ã€‚
 ```
 
-# ¶ÁÈ¡Êı¾İÎÄ¼ş
+# è¯»å–æ•°æ®æ–‡ä»¶
 
 ```Python
 #coding:utf-8
@@ -65,20 +65,20 @@ import numpy as np
 import cv2
 from caffe.proto import caffe_pb2
  
-lmdb_env = lmdb.open('lmdb_data')#´ò¿ªÊı¾İÎÄ¼ş
-lmdb_txn = lmdb_env.begin()      #Éú³É¾ä±ú
-lmdb_cursor = lmdb_txn.cursor()  #Éú³Éµü´úÆ÷Ö¸Õë
-datum = caffe_pb2.Datum()        #caffe¶¨ÒåµÄÊı¾İÀàĞÍ
+lmdb_env = lmdb.open('lmdb_data')#æ‰“å¼€æ•°æ®æ–‡ä»¶
+lmdb_txn = lmdb_env.begin()      #ç”Ÿæˆå¥æŸ„
+lmdb_cursor = lmdb_txn.cursor()  #ç”Ÿæˆè¿­ä»£å™¨æŒ‡é’ˆ
+datum = caffe_pb2.Datum()        #caffeå®šä¹‰çš„æ•°æ®ç±»å‹
  
-for key, value in lmdb_cursor:   #Ñ­»·»ñÈ¡Êı¾İ
-    datum.ParseFromString(value) #´ÓvalueÖĞ¶ÁÈ¡datumÊı¾İ
+for key, value in lmdb_cursor:   #å¾ªç¯è·å–æ•°æ®
+    datum.ParseFromString(value) #ä»valueä¸­è¯»å–datumæ•°æ®
  
-    label = datum.label          #»ñÈ¡±êÇ©ÒÔ¼°Í¼ÏñÊı¾İ
+    label = datum.label          #è·å–æ ‡ç­¾ä»¥åŠå›¾åƒæ•°æ®
     data = caffe.io.datum_to_array(datum)
     print data.shape
     print datum.channels
     image =data.transpose(1,2,0)
-    cv2.imshow('cv2.png', image) #ÏÔÊ¾
+    cv2.imshow('cv2.png', image) #æ˜¾ç¤º
     cv2.waitKey(0)
  
 cv2.destroyAllWindows()
