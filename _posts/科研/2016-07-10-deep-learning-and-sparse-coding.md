@@ -25,7 +25,7 @@ $Y^{k}$是k-iteration的输出，$L_{1}$,$L_{2}$,$N$是三个变换算子。这�
 
 ![1](/public/img/posts/deep learning and sparse codeing/1.png)
 
-对于上图反馈循环形式，接着做前向展开，获得一个有无限个前向传播但愿的级联结构，然后再将这个结构截断，获得一个固定长度的前向结构：
+对于上图反馈循环形式，接着做前向展开，获得一个有无限个前向传播单元的级联结构，然后再将这个结构截断，获得一个固定长度的前向结构：
 
 ![2](/public/img/posts/deep learning and sparse codeing/2.png)
 
