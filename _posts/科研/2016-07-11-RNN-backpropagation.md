@@ -26,7 +26,7 @@ class RNN:
     return y
 ```
 
-其中，$t$时刻的隐层状态的计算公式为：$h^{t}=tanh\left ( Whh\ast h^{t-1}+Wxh\ast x^{t} \right )$,$x^{t}$表示$t$时刻RNN的输入。需要注意的是这里的RNN的hidden layer采用了tanh作为激活函数（Activation function）, Output layer则没有采用任何激活函数，即为线性的output.
+其中，$t$ 时刻的隐层状态的计算公式为：$h^{t}=tanh\left ( Whh\ast h^{t-1}+Wxh\ast x^{t} \right )$,$x^{t}$ 表示 $t$ 时刻RNN的输入。需要注意的是这里的RNN的hidden layer采用了tanh作为激活函数（Activation function）, Output layer则没有采用任何激活函数，即为线性的output.
 
 ## 利用RNN前馈传播作预测
 
@@ -95,7 +95,7 @@ $$\frac{\partial E}{\partial u{}'}=\frac{\partial E }{\partial y}=\frac{y-t}{y\l
 
 所以当NN中Output layer没有激活函数的时候采用Quadratic error的trick.
 
-## 误差对输出层输入值的倒数
+## 误差对输出层输入值的导数
 
 (A)Linear output layer
 
@@ -105,7 +105,7 @@ $$\frac{\partial E}{\partial u{}'}=\frac{\partial E }{\partial y}=\frac{y-t}{y\l
 
 假如我们的output layer采用sigmoid激活函数，那么我们来证明一下为什么使用cross entropy error能够是参数估计收敛的更快。
 
-让我们计算输出层的误差对输入层的导数，假设输出层的输入值是$z$,这里$z=u{}'$,y=sigmoid\left ( z \right ).
+让我们计算输出层的误差对输入层的导数，假设输出层的输入值是$z$,这里$z=u{}'$,$y=sigmoid\left ( z \right )$.
 
 在NN中，输出层的误差和输出层的输入值的误差是守恒的。我们用$\delta^{L}$表示输出层的误差.
 
@@ -149,11 +149,11 @@ $$\frac{\partial E}{\partial y}=\frac{\partial }{\partial y}\frac{1}{2}\left ( t
 
 这里，公式中的$\frac{\partial E}{\partial u_{i}{}'}$已经计算得到，矩阵化上面公式得到：
 
-$$\frac{\partial E}{\partial Why}\ast H^{T}$$
+$$\frac{\partial E}{\partial Why}=\frac{\partial E}{\partial y}\ast H^{T}$$
 
 ### 计算隐藏层输出节点的梯度
 
-隐藏层$h$收到两个公式影响，所以计算关于$h$的偏导数的时候，需要将这两个公式都计算关于$h$的偏导数。
+隐藏层$h$受到两个公式影响，所以计算关于$h$的偏导数的时候，需要将这两个公式都计算关于$h$的偏导数。
 
 ![7](/public/img/posts/RNN/7.png)
 
@@ -187,7 +187,7 @@ $$dhnext=Whh^{T}\frac{\partial E}{\partial u}$$
 
 ![11](/public/img/posts/RNN/11.png)
 
-其中$\frac{\partial E}{\partial h_{i}}$已经得到，并且$\frac{\partial h_{i}}{\partial u_{i}}=1-\left ( tanh\left ( u_{i} \right )\right)^{2}$,因为隐藏层采用了tanh作为激活函数，$h_{i}=tanh\left ( u_{i} \right )$,$tanh\left ( x \right )$的倒数为$1-\left ( tanh\left ( x \right ) \right )^{2}$.
+其中$\frac{\partial E}{\partial h_{i}}$已经得到，并且$\frac{\partial h_{i}}{\partial u_{i}}=1-\left ( tanh\left ( u_{i} \right )\right)^{2}$,因为隐藏层采用了tanh作为激活函数，$h_{i}=tanh\left ( u_{i} \right )$,$tanh\left ( x \right )$的导数为$1-\left ( tanh\left ( x \right ) \right )^{2}$.
 
 矩阵化得到：
 
