@@ -161,11 +161,65 @@ $$\frac{\partial E}{\partial Why}\ast H^{T}$$
 
 $$u^{t+1}=Whh\ast h^{t}+Whx\ast x$$
 
-因为在RNN存在hidden layer 到hidden layer的计算，在计算$h^{t+1}$的时候用到了$h^{t}$, 所以在计算偏导数时要加上来自下一个时刻$t+1$时针对$u$的误差的偏导数，即将$t+1$时刻的hidden layer的输入的误差反向传播到t时刻的输出误差。也可以理解为依赖于$h^{t}的变量有$u^{t+1}$。
+因为在RNN存在hidden layer 到hidden layer的计算，在计算$h^{t+1}$的时候用到了$h^{t}$, 所以在计算偏导数时要加上来自下一个时刻$t+1$时针对$u$的误差的偏导数，即将$t+1$时刻的hidden layer的输入的误差反向传播到t时刻的输出误差。也可以理解为依赖于$h^{t}$的变量有$u^{t+1}$。
 
 我们将下一时刻的hidden layer的input 的关于误差的偏导数称为 dnext，然后计算下面的关于误差的针对output of hidden layer的偏导数。
 
+![8](/public/img/posts/RNN/8.png)
 
+这里$u_{i}{}'=\sum_{j=1}^{H}Whh\left ( i,j \right )\ast h_{j}$,并且$\frac{\partial E}{\partial y_{k}}$已经计算得到
+
+![9](/public/img/posts/RNN/9.png)
+
+矩阵化后得到：
+
+$$dhnext=Whh^{T}\frac{\partial E}{\partial u}$$
+
+注意上面公式中的$\frac{\partial E}{\partial u_{j}^{t+1}}$暂时还没有计算得到，在下一步计算中会计算。
+
+矩阵化上面两个公式得到：
+
+![10](/public/img/posts/RNN/10.png)
+
+### 计算隐藏层输入节点的导数
+
+我们称隐藏层的输入的误差偏导数为hraw,则
+
+![11](/public/img/posts/RNN/11.png)
+
+其中$\frac{\partial E}{\partial h_{i}}$已经得到，并且$\frac{\partial h_{i}}{\partial u_{i}}=1-\left ( tanh\left ( u_{i} \right )\right)^{2}$,因为隐藏层采用了tanh作为激活函数，$h_{i}=tanh\left ( u_{i} \right )$,$tanh\left ( x \right )$的倒数为$1-\left ( tanh\left ( x \right ) \right )^{2}$.
+
+矩阵化得到：
+
+![12](/public/img/posts/RNN/12.png)
+
+其中$\odot $表示点乘操作。
+
+### 计算输入层和隐藏层权重的导数
+
+![13](/public/img/posts/RNN/13.png)
+
+![14](/public/img/posts/RNN/14.png)
+
+这里，已知$u_{i}=\sum_{j=1}^{V}Wxh\left ( i,j \right )\ast x_{j}$,矩阵化得到：
+
+$$\frac{\partial E}{\partial Wxh}=\frac{\partial E}{\partial u}x^{T}$$
+
+### 计算隐层和隐层间时序的权重导数
+
+![15](/public/img/posts/RNN/15.png)
+
+这里，$u_{i}^{t}=\sum_{i=1}^{H}Whh\left ( j,i \right )\ast h_{i}^{t-1}+\sum_{i=1}^{V}Wxh\left ( j,i \right )\ast x_{i}$,矩阵化得到：
+
+$$\frac{\partial E}{\partial Whh}=\frac{\partial E}{\partial u}\ast \left ( h^{t-1} \right )^{T}$$
+
+到目前为止，我们已经计算得到了所有的参数矩阵关于误差的偏导数，然后就可以根据偏导数进行梯度下降进行参数更新了。
+
+![16](/public/img/posts/RNN/16.png)
+
+其中dhnext在计算过程中，初始化为0.
+
+由此可见其实RNN的推导相比于CNN要简单好多，可以理解为是一个普通全连接的网络连接的梯度传递和隐层的时序连接的梯度传递的和。
 
 
 
