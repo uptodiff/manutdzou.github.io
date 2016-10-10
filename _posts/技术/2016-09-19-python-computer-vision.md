@@ -2,8 +2,8 @@
 layout: post
 title: python computer vision
 category: 技术
-tags: 技术
-keywords: github pages
+tags: 编程语言
+keywords: Python
 description:
 ---
 

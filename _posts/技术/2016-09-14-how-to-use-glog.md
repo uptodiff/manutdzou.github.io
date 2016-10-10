@@ -2,8 +2,8 @@
 layout: post
 title: How to use glog
 category: 技术
-tags: 技术
-keywords: github pages
+tags: 编程语言
+keywords: glog
 description: 
 ---
 

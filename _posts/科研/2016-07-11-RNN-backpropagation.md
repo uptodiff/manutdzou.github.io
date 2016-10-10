@@ -3,7 +3,7 @@ layout: post
 title: RNN(循环神经网络)推导
 category: 科研
 tags: 深度学习
-keywords: 理论
+keywords: RNN理论
 description: 
 ---
 

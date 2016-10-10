@@ -3,7 +3,7 @@ layout: post
 title: 为什么CNN反向传播计算梯度时需要将权重旋转180度
 category: 科研
 tags: 深度学习
-keywords: 理论
+keywords: 深度学习理论
 description: 
 ---
 
