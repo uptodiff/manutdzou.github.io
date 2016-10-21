@@ -15,6 +15,22 @@ description:
 
 项目地址：https://github.com/harry19902002/image-style-transfor
 
+CVPR文章: Image Style Transfer Using Convolutional Neural Networks
+
+算法原理非常简单，如图
+
+![1](/public/img/posts/image style/style.png)
+
+首先选取一个网络，比如VGG16，然后将style image输入网络获得指定layers的feature maps,再将content image输入网络获得指定layer的feature map.这里作者使用了CONTENT_LAYER = 'relu4_2'，STYLE_LAYERS = ('relu1_1', 'relu2_1', 'relu3_1', 'relu4_1', 'relu5_1').再随机产生一个相同尺寸高斯白噪声，通过网络获得对应layer的feature maps，然后分别计算content feature map 和style feature map 和高斯白噪声中的对应feature map的loss,loss采用feature map的vector inner product的l2 loss.在代码实现中还加入了一个pixel级的差分loss用于平滑图像.利用梯度下降算法最小化loss更新网络获得的图像就能match content image 和style image了。
+
+如下是我用算法实现的迁移图像效果图。
+
+![2](/public/img/posts/image style/1.jpg)
+
+![3](/public/img/posts/image style/2.jpg)
+
+
+
 neural_style.py
 
 ```python
@@ -29,11 +45,11 @@ import math
 from argparse import ArgumentParser
 
 # default arguments
-CONTENT_WEIGHT = 5e0
-STYLE_WEIGHT = 1e2
-TV_WEIGHT = 1e2
-LEARNING_RATE = 1e2
-STYLE_SCALE = 1.0
+CONTENT_WEIGHT = 5e0 #content loss weight
+STYLE_WEIGHT = 1e2 #style loss weight
+TV_WEIGHT = 1e2 #smooth loss weight
+LEARNING_RATE = 1e2 
+STYLE_SCALE = 1.0 
 ITERATIONS = 1000
 VGG_PATH = './imagenet-vgg-verydeep-19.mat'
 
