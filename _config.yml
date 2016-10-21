@@ -6,13 +6,13 @@ markdown: kramdown
 author: 
   name: Jinyi Zou
   email: manutdzou@126.com
-  link: http://manutdzou.github.io/
+  link: http://manutdzou.github.io
   github: http://github.com/manutdzou
 
 # 站点信息
 title: 邹进屹的博客
 description: My personal blog
-url: http://manutdzou.github.io/
+url: http://manutdzou.github.io
 rss_url: /pages/atom.xml
 
 # gavatar头像及Favicon
@@ -22,7 +22,7 @@ favicon: /public/img/we2.jpg
 # google analytics 设置
 ga:
   id: UA-54262064-1 
-  url: http://manutdzou.github.io/
+  url: http://manutdzou.github.io
   
 # disqus 设置
 disqus:
