@@ -25,7 +25,7 @@ description:
 
 噪声扰动(noise): 对图像的每个像素RGB进行随机扰动, 常用的噪声模式是椒盐噪声和高斯噪声;
 
-颜色变换(color): 在训练集像素值的RGB颜色空间进行PCA, 得到RGB空间的3个主方向向量,3个特征值,$p1$, $p2$, $p3$, $\lambda 1$, $\lambda 2$, $\lambda 3$. 对每幅图像的每个像素$I_{xy}=\left \{ I^{R\left \{ xy \right \}} ,I^{G\left \{ xy \right \}} ,I^{B\left \{ xy \right \}} \right \}^{T}$进行加上如下的变化:
+颜色变换(color): 在训练集像素值的RGB颜色空间进行PCA, 得到RGB空间的3个主方向向量,3个特征值,$p1$, $p2$, $p3$, $\lambda 1$, $\lambda 2$, $\lambda 3$. 对每幅图像的每个像素$I_{xy}=\left \{ I^{R_{ xy }} ,I^{G_{ xy }} ,I^{B_{ xy }} \right \}^{T}$进行加上如下的变化:
 
 $$\left [ p1,p2,p3 \right ]\left [ \alpha 1\lambda 1 ,\alpha 2\lambda 2 ,\alpha 3\lambda 3 \right ]^{T}$$
 
@@ -54,7 +54,7 @@ datagen = ImageDataGenerator(
 	zoom_range=0.2,
 	horizontal_flip=True,
 	fill_mode='nearest')
-img = load_img('～/lena.jpg') # this is a PIL image, please replace to your own file path
+img = load_img('lena.jpg') # this is a PIL image, please replace to your own file path
 x = img_to_array(img) # this is a Numpy array with shape (3, 150, 150)
 x = x.reshape((1,) + x.shape) # this is a Numpy array with shape (1, 3, 150, 150)
 # the .flow() command below generates batches of randomly transformed images
@@ -62,7 +62,7 @@ x = x.reshape((1,) + x.shape) # this is a Numpy array with shape (1, 3, 150, 150
 i = 0
 for batch in datagen.flow(x,
 	batch_size=1,
-	save_to_dir='~/data/preview',
+	save_to_dir='data/preview',
 	save_prefix='lena',
 	save_format='jpg'):
     i += 1
