@@ -27,9 +27,9 @@ n_input = 784 # 输入的维度
 n_classes = 10 # 标签的维度
 dropout = 0.8 # Dropout 的概率
 # 占位符输入
-x = tf.placeholder(tf.types.float32, [None, n_input])
-y = tf.placeholder(tf.types.float32, [None, n_classes])
-keep_prob = tf.placeholder(tf.types.float32)
+x = tf.placeholder(tf.float32, [None, n_input])
+y = tf.placeholder(tf.float32, [None, n_classes])
+keep_prob = tf.placeholder(tf.float32)
 # 卷积操作
 def conv2d(name, l_input, w, b):
     return tf.nn.relu(tf.nn.bias_add(tf.nn.conv2d(l_input, w, strides=[1, 1, 1, 1], padding='SAME'),b), name=name)
@@ -116,7 +116,7 @@ with tf.Session() as sess:
             acc = sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 1.})
             # 计算损失值
             loss = sess.run(cost, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 1.})
-            print "Iter " + str(step\*batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) + ", Training Accuracy= " + "{:.5f}".format(acc)
+            print "Iter " + str(step*batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) + ", Training Accuracy= " + "{:.5f}".format(acc)
         step += 1
     print "Optimization Finished!"
     # 计算测试精度
