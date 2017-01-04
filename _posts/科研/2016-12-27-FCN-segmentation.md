@@ -1,9 +1,9 @@
 ---
 layout: post
-title: batch norm
+title: Fully Convolutional Models for Semantic Segmentation
 category: 科研
 tags: 深度学习
-keywords: Caffe Fully Convolutional Models for Semantic Segmentation
+keywords: 应用
 description: 
 ---
 
