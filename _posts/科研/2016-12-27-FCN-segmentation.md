@@ -37,7 +37,7 @@ caffe.set_mode_gpu()
 net = caffe.Net('/home/dlg/fcn.berkeleyvision.org/voc-fcn-alexnet/deploy.prototxt',
                 weights,
                 caffe.TEST)
-##将fc6和fc7的全连接层转化为卷积层
+# 将fc6和fc7的全连接层转化为卷积层
 params = ['fc6', 'fc7']
 fc_params = {pr: (net.params[pr][0].data, net.params[pr][1].data) for pr in params}
 
@@ -64,7 +64,7 @@ for _ in range(25):
     score.seg_tests(solver, False, val, layer='score')
 ```
 
-test的过程
+test的过程如下
 
 ```python
 import numpy as np
