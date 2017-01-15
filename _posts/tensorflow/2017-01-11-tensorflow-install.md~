@@ -1,10 +1,10 @@
 ---
 layout: post
 title: tensorflow安装
-category: tensorflow应用
-tags: tensorflow
-keywords:tensorflow
-description: 
+category: 应用
+tags: 深度学习
+keywords: tf学习
+description:
 ---
 
 使用虚拟环境安装并激活虚拟环境
