@@ -1,10 +1,10 @@
 ---
 layout: post
 title: tensorflow DQN
-category: tensorflow应用
-tags: tensorflow
+category: tensorflow
+tags: 深度学习
 keywords:tensorflow
-description: 
+description: tf学习
 ---
 
 

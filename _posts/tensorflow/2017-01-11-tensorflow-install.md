@@ -1,7 +1,7 @@
 ---
 layout: post
 title: tensorflow安装
-category: 应用
+category: tensorflow
 tags: 深度学习
 keywords: tf学习
 description:
