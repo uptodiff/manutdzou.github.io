@@ -4,7 +4,7 @@ title: python computer vision
 category: 技术
 tags: 编程语言
 keywords: Python
-description:
+description:库使用
 ---
 
 # python computer vision

@@ -4,7 +4,7 @@ title: How to use glog
 category: 技术
 tags: 编程语言
 keywords: glog
-description: 
+description: 库使用
 ---
 
 # How to use glog

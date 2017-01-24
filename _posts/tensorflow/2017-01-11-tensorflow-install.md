@@ -4,7 +4,7 @@ title: tensorflow安装
 category: tensorflow
 tags: 深度学习
 keywords: tf学习
-description:
+description:环境搭建
 ---
 
 使用虚拟环境安装并激活虚拟环境
