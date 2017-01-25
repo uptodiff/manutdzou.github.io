@@ -102,7 +102,7 @@ name:"XXXX"
 top:"XXXX"
 bottom:"XXXX"
 python_param{
-modual: "layer"
+module: "layer"
 #module的名字，通常是定义Layer的.py文件的文件名，需要在$PYTHONPATH下
 layer: "layer_class"
 #layer的名字---module中的类名
