@@ -96,7 +96,7 @@ class BrainDQN:
                 self.b_conv2, self.W_conv3, self.b_conv3, self.W_fc1, \
                 self.b_fc1, self.W_fc2, self.b_fc2  = self.createQNetwork()
 
-    # init Target Q Network, this is for next state and will update
+    # init Target Q Network, this is for next stat and will update
     self.stateInputT,self.QValueT,self.W_conv1T,self.b_conv1T,self.W_conv2T,self.b_conv2T,self.W_conv3T,self.b_conv3T,self.W_fc1T,self.b_fc1T,self.W_fc2T,self.b_fc2T = self.createQNetwork()
 
     self.copyTargetQNetworkOperation = \
@@ -196,6 +196,7 @@ class BrainDQN:
         y_batch.append(reward_batch[i])
       else:
         y_batch.append(reward_batch[i] + GAMMA * np.max(QValue_batch[i]))
+        #print "---huaijin ---- QValue shape  = {}".format(QValue_batch[i])
 
     self.trainStep.run(feed_dict={
       self.yInput : y_batch,
