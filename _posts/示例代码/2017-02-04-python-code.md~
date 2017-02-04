@@ -8,8 +8,6 @@ description:
 ---
 
 # python 用opencv检测视频中人脸
-
-```python
 import cv2
 import os
 import sys
@@ -37,4 +35,3 @@ while True:
             break
     else:
         break
-```
