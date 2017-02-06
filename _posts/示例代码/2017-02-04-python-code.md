@@ -38,3 +38,26 @@ while True:
     else:
         break
 ```
+
+# 用python request模块下载数据
+
+```python
+import requests
+import tarfile
+ 
+url = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
+save_path = "my_path"
+if not os.path.exists(save_path):
+	os.makedirs(save_path)
+ 
+filename = "save_file"
+filepath = os.path.join(save_path, filename)
+# 下载
+if not os.path.exists(filepath):
+	print("downloading...", filename)
+	r = requests.get(url)
+	with open(filepath, 'wb') as f:
+	    f.write(r.content)
+# 解压
+tarfile.open(filepath, 'r:gz').extractall(filepath)
+```
