@@ -39,7 +39,7 @@ while True:
         break
 ```
 
-# 用python request模块下载数据
+# 用python requests模块下载数据
 
 ```python
 import requests
