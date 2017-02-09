@@ -4,9 +4,8 @@ title: windows caffe implement
 category: 科研
 tags: 深度学习
 keywords: 环境搭建
-description: 
+description:
 ---
-
 
 # windows7+cuda8+cudnn5.1+vs2015+Anaconda2配置windows caffe
 
@@ -103,6 +102,6 @@ set PATH=%~dp0bin;%~dp0lib;%~dp0x64\vc14\bin;%~dp0..\examples\cpp_classification
 
 接着我将尝试在这个基础上开发基于windows系统的基于Windows caffe的exe程序。将会在后续开发中记录。
 
-<font color=DeepSkyBlue size=32>搭建开发环境到写完总结用了三个晚上的时间，每晚到凌晨2点啊非常辛苦啊，希望各位大咖再参考时候能打赏一下，下面是我的微信收款哟，嘿嘿，好给我继续写下去的动力~~</font>
+`搭建开发环境到写完总结用了三个晚上的时间，每晚到凌晨2点啊非常辛苦啊，希望各位大咖再参考时候能打赏一下，下面是我的微信收款哟，嘿嘿，好给我继续写下去的动力`
 
 ![6](/public/img/pay.jpg)
