@@ -5,6 +5,8 @@ category: 科研
 tags: 深度学习
 keywords: 环境搭建
 description: 
+---
+
 
 # windows7+cuda8+cudnn5.1+vs2015+Anaconda2配置windows caffe
 
