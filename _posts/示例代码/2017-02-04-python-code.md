@@ -7,6 +7,22 @@ keywords: python代码
 description: 
 ---
 
+# python连续帧图片写视频
+
+```python
+import cv2,os
+dictionary='show'
+size = (1280,672)
+fps=20
+video=cv2.VideoWriter('demo_show.avi', cv2.cv.CV_FOURCC('M','J','P','G'), fps,size)
+for i in range(5782):
+    name = str(i)+'.jpg'
+    im_path = os.path.join('/home/dlg',dictionary,name)
+    im = cv2.imread(im_path)
+    video.write(im)
+print 'done'
+```
+
 # python 用opencv检测视频中人脸
 
 ```python
