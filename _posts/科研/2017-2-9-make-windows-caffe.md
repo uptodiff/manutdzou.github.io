@@ -64,11 +64,11 @@ if !PYTHON_VERSION! EQU 2 (
 :: expansion of CMAKE_GENERATOR
 if %WITH_NINJA% EQU 0 (
     if "%MSVC_VERSION%"=="14" (
-        set CMAKE_GENERATOR=Visual Studio 14 2015
+        set CMAKE_GENERATOR=Visual Studio 14 2015 Win64
     )
 ```
 
-这儿需要根据你的vs版本以及cmake的识别进行修改
+这儿需要根据你的vs版本以及cmake的识别进行修改，这儿一定要选Win64,测试发现不使用Win64时候Ninja可以通过编译，CMake编译出错
 
 ```
 -DCUDNN_ROOT=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0 ^
@@ -99,6 +99,19 @@ set PATH=%~dp0bin;%~dp0lib;%~dp0x64\vc14\bin;%~dp0..\examples\cpp_classification
 至于matcaffe同样只需要开启matcaffe编译就行。
 
 到这就能实现在windows下使用caffe的全部功能。特别是Windows下pycaffe的使用将和linux下无异。
+
+由于windows下的Caffe.sln是vs2013下的工程所以在vs2015下无法编译通过，所以需要用cmake重新生成sln文件，方法是禁用ninja编译
+
+```
+) else (
+    :: Change the settings here to match your setup
+    :: Change MSVC_VERSION to 12 to use VS 2013
+    if NOT DEFINED MSVC_VERSION set MSVC_VERSION=14
+    :: Change to 1 to use Ninja generator (builds much faster)
+    if NOT DEFINED WITH_NINJA set WITH_NINJA=0
+```
+
+编译完成后在build下会生成vs2015下的Caffe.sln
 
 接着我将尝试在这个基础上开发基于windows系统的基于Windows caffe的exe程序。将会在后续开发中记录。
 
