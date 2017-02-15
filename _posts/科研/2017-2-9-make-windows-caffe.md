@@ -3,7 +3,7 @@ layout: post
 title: windows caffe implement
 category: 科研
 tags: 深度学习
-keywords: 环境搭建
+keywords: windows caffe
 description:
 ---
 
