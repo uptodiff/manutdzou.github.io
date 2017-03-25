@@ -592,13 +592,6 @@ DEFINE_string(file_type, "video",
 	"The file type in the list_file. Currently support image and video.");
 ```
 
-
-
-
-
-
-
-
 再次求打赏啊！！！
 
 ![3](/public/img/pay.jpg)
