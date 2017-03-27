@@ -32,10 +32,14 @@ caffe_option(USE_CUDNN "Build Caffe with cuDNN library support" OFF)
 #include <glog/logging.h>
 ```
 
-在detection_output_layer.hpp注释掉boost正则化防止报错
+在detection_output_layer.hpp注释掉boost正则化防止报错和Forward_gpu这个函数
 
 ```
 //#include <boost/regex.hpp>
+
+//virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+//   const vector<Blob<Dtype>*>& top);
+/// @brief Not implemented
 ```
 
 在detection_output_layer.cpp注释掉所有使用了boost的代码
