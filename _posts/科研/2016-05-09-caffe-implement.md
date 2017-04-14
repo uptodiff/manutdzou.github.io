@@ -205,3 +205,23 @@ make matcaffe
 ```
 sudo ln -s cuda-8.0 cuda
 ```
+
+13, 遇到的问题
+
+“fatal error: hdf5.h: 没有那个文件或目录”解决方法
+
+在Makefile.config文件的第85行，添加/usr/include/hdf5/serial/ 到 INCLUDE_DIRS，也就是把下面第一行代码改为第二行代码。
+
+```
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
+
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+```
+
+在Makefile文件的第173行，把 hdf5_hl 和hdf5修改为hdf5_serial_hl 和 hdf5_serial，也就是把下面第一行代码改为第二行代码。
+
+```
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5
+
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial
+```
