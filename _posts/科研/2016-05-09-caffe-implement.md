@@ -203,7 +203,8 @@ make matcaffe
 在/usr/local里有cuda的版本信息以及一个cuda的软连接，在需要切换不同cuda版本时候可以简单地更改软连接指向
 
 ```
-sudo ln -s cuda-8.0 cuda
+sudo rm /usr/local/cuda 
+sudo ln -s /usr/local/cuda-8.0 /usr/local/cuda
 ```
 
 13, 遇到的问题
