@@ -226,3 +226,28 @@ LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5
 
 LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial
 ```
+
+或者
+
+```
+Cannot find -lhdf5_hl and -lhdf5 :
+
+CXX src/caffe/util/hdf5.cpp
+AR -o .build_release/lib/libcaffe.a
+LD -o .build_release/lib/libcaffe.so.1.0.0-rc3
+/usr/bin/ld: cannot find -lhdf5_hl
+/usr/bin/ld: cannot find -lhdf5
+collect2: error: ld returned 1 exit status
+Makefile:563: recipe for target '.build_release/lib/libcaffe.so.1.0.0-rc3' failed
+make: *** [.build_release/lib/libcaffe.so.1.0.0-rc3] Error 1
+
+-- +INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
+-- +LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
+
+++ +INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+++ +LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/
+
+cd /usr/lib/x86_64-linux-gnu
+sudo ln -s libhdf5_serial.so.8.0.2 libhdf5.so
+sudo ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so
+```
