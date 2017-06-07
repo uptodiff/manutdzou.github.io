@@ -14,3 +14,9 @@ image = tf.placeholder(tf.float32, shape=[None, IMAGE_SIZE, IMAGE_SIZE, 3], name
 channel_mean = tf.constant(np.array([123.68,116.779,103.938], dtype=np.float32))
 image_before_process = tf.add(image,channel_mean)
 ```
+
+# 在构造图时候查看tensor的shape
+
+```
+tensor.get_shape()
+```
