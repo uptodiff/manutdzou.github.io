@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 纯C++代码实现的faster rcnn
-category: 科研
-tags: 深度学习
+title: 绾疌++浠ｇ爜瀹炵幇鐨刦aster rcnn
+category: 绉戠爺
+tags: 娣卞害瀛︿範
 keywords: faster rcnn
 description:
 ---
