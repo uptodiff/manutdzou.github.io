@@ -20,3 +20,7 @@ image_before_process = tf.add(image,channel_mean)
 ```
 tensor.get_shape()
 ```
+
+# tf.app.run()pudb调试时候遇到参数错误，运行时候正常
+
+使用tf.app.run(main=main)
