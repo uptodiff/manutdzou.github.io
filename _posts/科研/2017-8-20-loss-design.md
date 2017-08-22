@@ -13,8 +13,8 @@ description:
 def get_softmax_loss(features,one_hot_labels):
     prob = tf.nn.softmax(features + 1e-5)
     cross_entropy = tf.multiply(one_hot_labels,tf.log(tf.clip_by_value(prob,1e-5,1.0)))
-	loss = -tf.reduce_mean(cross_entropy)
-	return loss
+    loss = -tf.reduce_mean(cross_entropy)
+    return loss
 ```
 
 # Center loss
@@ -55,16 +55,20 @@ def get_center_loss(features, labels, alpha, num_classes):
 
 # Focal loss
 
+[参考](http://blog.csdn.net/yaoqi_isee/article/details/77051205)
+
 ```
 def get_focal_loss(features,one_hot_labels,n):
     prob = tf.nn.softmax(features + 1e-5)
     cross_entropy = tf.multiply(one_hot_labels,tf.log(tf.clip_by_value(prob,1e-5,1.0)))
-	weight = tf.pow(tf.subtract(1.0,prob),n)
-	loss = -tf.reduce_mean(tf.multiply(weight,cross_entropy))
-	return loss
+    weight = tf.pow(tf.subtract(1.0,prob),n)
+    loss = -tf.reduce_mean(tf.multiply(weight,cross_entropy))
+    return loss
 ```
 
-#Triplet loss
+# Triplet loss
+
+[参考](http://blog.csdn.net/tangwei2014/article/details/46788025)
 
 ```
 def compute_triplet_loss(anchor_feature, positive_feature, negative_feature, margin):
@@ -81,10 +85,10 @@ def compute_triplet_loss(anchor_feature, positive_feature, negative_feature, mar
      Return the loss operation
     """
 	
-	def compute_euclidean_distance(x, y):
-    """
-    Computes the euclidean distance between two tensorflow variables
-    """
+    def compute_euclidean_distance(x, y):
+        """
+        Computes the euclidean distance between two tensorflow variables
+        """
         d = tf.square(tf.sub(x, y))
         d = tf.sqrt(tf.reduce_sum(d)) # What about the axis ???
         return d
