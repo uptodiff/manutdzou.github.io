@@ -24,3 +24,10 @@ tensor.get_shape()
 # tf.app.run()pudb调试时候遇到参数错误，运行时候正常
 
 使用tf.app.run(main=main)
+
+# tensorflow查看可用设备
+
+```
+from tensorflow.python.client import device_lib as _device_lib
+print _device_lib.list_local_devices()
+```
