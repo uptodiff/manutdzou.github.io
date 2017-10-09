@@ -1,7 +1,7 @@
 ---
 layout: post
 title: pytorch examples
-category: 科研
+category: pytorch
 tags: 深度学习
 keywords: pytorch
 description: 
@@ -293,7 +293,7 @@ class TwoLayerNet(torch.nn.Module):
         self.linear1 = torch.nn.Linear(D_in, H)
         self.linear2 = torch.nn.Linear(H, D_out)
         #这儿注意不能实例化自定义操作
-		self.relu = MyReLU
+        self.relu = MyReLU
     def forward(self, x):
         """
         In the forward function we accept a Variable of input data and we must return
@@ -301,7 +301,7 @@ class TwoLayerNet(torch.nn.Module):
         well as arbitrary operators on Variables.
         """
         h = self.linear1(x)
-		#实例化并取操作
+        #实例化并取操作
         h_relu = self.relu()(h)
         y_pred = self.linear2(h_relu)
         return y_pred
