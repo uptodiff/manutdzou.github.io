@@ -81,5 +81,5 @@ with tf.Session() as sess:
     parameter = []
     for i in range(len(var)):
         parameter.append(sess.run(var[i]))
-		logging.info(var[i].name)
+        logging.info(var[i].name)
 ```
