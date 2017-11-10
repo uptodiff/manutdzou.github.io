@@ -18,7 +18,24 @@ image_before_process = tf.add(image,channel_mean)
 # 在构造图时候查看tensor的shape
 
 ```
-tensor.get_shape()
+tensor.shape
+#returns tensor's static shape, while the graph is being built.
+
+tensor.shape.as_list() 
+#returns the static shape as a integer list.
+
+tensor.shape[i].value 
+#returns the static shape's i-th dimension size as an integer.
+
+tf.shape(t) 
+#returns t's run-time shape as a tensor.
+
+#An example:
+x = tf.placeholder(tf.float32, shape=[None, 8]) # x shape is non-deterministic while building the graph.
+print(x.shape) # Outputs static shape (?, 8).
+shape_t = tf.shape(x)
+with tf.Session() as sess:
+    print(sess.run(shape_t, feed_dict={x: np.random.random(size=[4, 8])})) # Outputs run-time shape (4, 8).
 ```
 
 # tf.app.run()pudb调试时候遇到参数错误，运行时候正常
