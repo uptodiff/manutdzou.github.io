@@ -142,7 +142,7 @@ class GeneratorEnqueuer():
 ```
 def data_provide():
     ...
-	return data, label
+    return data, label
 ```
 
 # batch生成器
