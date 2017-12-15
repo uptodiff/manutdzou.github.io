@@ -289,3 +289,31 @@ if __name__ == '__main__':
         self.dataset_iterator = dataset.make_one_shot_iterator()
 
 ```
+
+#利用python的multiprocess包多线程处理生成数据
+
+```
+import numpy as np
+import time
+from multiprocessing import Pool, cpu_count
+
+def batch_works(k):
+    #将任务集合拆分到每个cpu核中
+    if k == n_processes - 1:
+        nums = jobs[k * int(len(jobs) / n_processes) : ]
+    else:
+        nums = jobs[k * int(len(jobs) / n_processes) : (k + 1) * int(len(jobs) / n_processes)]
+    for j in nums:
+        py_function()
+
+if __name__ == '__main__':
+    jobs = range(100) #所需执行的任务序列
+    n_processes = cpu_count()
+
+    pool = Pool(processes=n_processes)
+    start = time.time()
+    pool.map(batch_works, range(n_processes))
+    end = time.time()
+    print end -start
+
+```
