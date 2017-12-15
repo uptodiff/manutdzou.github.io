@@ -290,7 +290,7 @@ if __name__ == '__main__':
 
 ```
 
-#利用python的multiprocess包多线程处理生成数据
+# 利用python的multiprocess包多线程处理生成数据
 
 ```
 import numpy as np
