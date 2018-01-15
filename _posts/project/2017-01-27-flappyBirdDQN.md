@@ -17,6 +17,16 @@ description:
 
 ![2](/public/img/posts/flappybird/2.png)
 
+大致算法流程如下
+
+首先随机动作填充replace memory, [state_t, action, reward,state_t+1]
+
+价值网络预测对应state下执行每个动作所获得的feature reward
+
+训练价值网络使得state_t下的feature reward和state_t+1下的feature reward和前一时刻的reward的和逼近
+
+更新replace memory直到整个网络收敛
+
 ```python
 # FlappyBirdDQN.py
 
