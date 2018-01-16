@@ -52,15 +52,15 @@ colors = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0]
 def process (input_image, params, model_params):
 
     oriImg = cv2.imread(input_image)  # B,G,R order
-	# 获取不同的缩放比例
+    # 获取不同的缩放比例
     multiplier = [x * model_params['boxsize'] / oriImg.shape[0] for x in params['scale_search']]
 
-	# 18个关节点加1个背景
+    # 18个关节点加1个背景
     heatmap_avg = np.zeros((oriImg.shape[0], oriImg.shape[1], 19))
-	# 19个肢体的单位向量方向，其中最后两个肢体不在躯干上，所以最后显示忽略
+    # 19个肢体的单位向量方向，其中最后两个肢体不在躯干上，所以最后显示忽略
     paf_avg = np.zeros((oriImg.shape[0], oriImg.shape[1], 38))
 
-	#获取不同尺度下heatmap和PAF的平均值
+    #获取不同尺度下heatmap和PAF的平均值
     for m in range(len(multiplier)):
         scale = multiplier[m]
 
@@ -92,7 +92,7 @@ def process (input_image, params, model_params):
     all_peaks = []
     peak_counter = 0
 
-	#寻找每个关节点的位置，关节点需要满足该点的confidence大于四周每个点
+    #寻找每个关节点的位置，关节点需要满足该点的confidence大于四周每个点
     for part in range(18):
         map_ori = heatmap_avg[:, :, part]
         map = gaussian_filter(map_ori, sigma=3)
@@ -120,7 +120,7 @@ def process (input_image, params, model_params):
     special_k = []
     mid_num = 10
 
-	#匹配相连接的关节点组成的肢体，在关节点连线上用10个点的采样替代该连线上的积分，当满足肢体上点方向一致，得分满足条件时，将该肢体参数保留
+    #匹配相连接的关节点组成的肢体，在关节点连线上用10个点的采样替代该连线上的积分，当满足肢体上点方向一致，得分满足条件时，将该肢体参数保留
     for k in range(len(mapIdx)):
         score_mid = paf_avg[:, :, [x - 19 for x in mapIdx[k]]]
         candA = all_peaks[limbSeq[k][0] - 1]
@@ -164,7 +164,7 @@ def process (input_image, params, model_params):
             connection = np.zeros((0, 5))
             for c in range(len(connection_candidate)):
                 i, j, s = connection_candidate[c][0:3]
-				#每个关节点只属于一个肢体
+                #每个关节点只属于一个肢体
                 if (i not in connection[:, 3] and j not in connection[:, 4]):
                     connection = np.vstack([connection, [candA[i][3], candB[j][3], s, i, j]])
                     if (len(connection) >= min(nA, nB)):
@@ -172,7 +172,7 @@ def process (input_image, params, model_params):
 
             connection_all.append(connection)
         else:
-		    #表示没有找到关节点对匹配的肢体
+            #表示没有找到关节点对匹配的肢体
             special_k.append(k)
             connection_all.append([])
 
@@ -181,11 +181,11 @@ def process (input_image, params, model_params):
     subset = -1 * np.ones((0, 20))
     candidate = np.array([item for sublist in all_peaks for item in sublist])
 
-	#肢体连接策略
-	#对于某个肢体
+    #肢体连接策略
+    #对于某个肢体
     for k in range(len(mapIdx)):
         if k not in special_k:
-		    #配对关节点A和B组成的肢体
+            #配对关节点A和B组成的肢体
             partAs = connection_all[k][:, 0]
             partBs = connection_all[k][:, 1]
             indexA, indexB = np.array(limbSeq[k]) - 1
@@ -204,7 +204,7 @@ def process (input_image, params, model_params):
                         subset[j][indexB] = partBs[i]
                         subset[j][-1] += 1
                         subset[j][-2] += candidate[partBs[i].astype(int), 2] + connection_all[k][i][2]
-			    #如果肢体组成的关节点A,B分别连到了两个人体，则表明这两个人体应该组成一个人体，则合并两个人体（当肢体是按顺序拼接情况下不存在这样的状况）
+                #如果肢体组成的关节点A,B分别连到了两个人体，则表明这两个人体应该组成一个人体，则合并两个人体（当肢体是按顺序拼接情况下不存在这样的状况）
                 elif found == 2:  # if found 2 and disjoint, merge them
                     j1, j2 = subset_idx
                     membership = ((subset[j1] >= 0).astype(int) + (subset[j2] >= 0).astype(int))[:-2]
@@ -219,7 +219,7 @@ def process (input_image, params, model_params):
                         subset[j1][-2] += candidate[partBs[i].astype(int), 2] + connection_all[k][i][2]
 
                 # if find no partA in the subset, create a new subset
-				#如果肢体组成的关节点A,B没有被连接到某个人体则组成新的人体
+                #如果肢体组成的关节点A,B没有被连接到某个人体则组成新的人体
                 elif not found and k < 17:
                     row = -1 * np.ones(20)
                     row[indexA] = partAs[i]
