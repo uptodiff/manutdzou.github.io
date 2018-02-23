@@ -89,14 +89,12 @@ with tf.Session() as sess:
 需要在numpy和cv数据的IO以及tf解码时候注意，不然训练模型时和测试模型数据通道顺序不一样会导致模型预测出错
 
 ```
-import tensorflow as tf                                                                                                                                                           Variables:
-import cv2                                                                                                                                                                        
-                                                                                                                                                                                    
-image = cv2.imread('test.jpg')   #BGR order                                                                                                                                              
-                                                                                                                                                                                    
-image_string = tf.read_file('test.jpg')                                                                                                                                        
-image_decoded = tf.image.decode_image(image_string)                                                                                                                                                                                                                                   
-                                                                                                                                                                                    
+import tensorflow as tf
+import cv2
+
+image = cv2.imread('test.jpg')   #BGR order
+image_string = tf.read_file('test.jpg')                                                                                                                   
+image_decoded = tf.image.decode_image(image_string)
 with tf.Session() as sess:                                                                                                                                                        
     image_d = sess.run(image_decoded)      #RGB order                                                                                                                                       
 ```
