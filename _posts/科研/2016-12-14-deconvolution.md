@@ -92,3 +92,7 @@ $$o^{′}=s(i^{'}−1)+k−2p$$
 ![5](/public/img/posts/反卷积/4.gif)
 
 转自[http://buptldy.github.io/2016/10/29/2016-10-29-deconv/]
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

@@ -80,3 +80,7 @@ $$Y=argmin\left \| X-DY \right \|^{2}+c^{2}\left \| Y \right \|^{0}$$
 $$Y=argmin\left \| X-DY \right \|^{2} s.t. \left \| Y \right \|_{0}\leq M$$
 
 该问题中的约束条件可以看作池化算子（pooling）：即将输入中绝对值最大的M个值保留、其余归0。考虑到0范数约束问题是特征选择的经典形式之一，这也让我们对原本被视作单纯工程“瞎凑”的池化操作的实际作用，有了更多遐想。
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

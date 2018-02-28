@@ -701,3 +701,7 @@ test set proposal recall:
 # 总结
 
 实验表明在voc2007检测任务中，RPN在IOU为0.5时proposal的recall为95%以上，但检测结果为69mAP，这表明算法的瓶颈在分类问题上。
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

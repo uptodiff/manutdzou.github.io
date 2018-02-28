@@ -419,6 +419,6 @@ make
 
 最终在build/lib中生成动态库，bulid/bin中生成可执行文件
 
-再次求打赏啊！！！
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
 
 ![3](/public/img/pay.jpg)

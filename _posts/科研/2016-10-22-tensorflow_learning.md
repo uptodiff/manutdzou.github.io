@@ -1684,3 +1684,7 @@ t2_2 = datetime.datetime.now()
 print("Single GPU computation time: " + str(t2_1-t1_1))
 print("Multi GPU computation time: " + str(t2_2-t1_2))
 ```
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

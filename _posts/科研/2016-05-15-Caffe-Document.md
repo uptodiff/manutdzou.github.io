@@ -1196,3 +1196,7 @@ rms_decay: 0.98
 ```
 
 最后两行，需要设置rms_decay值。
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

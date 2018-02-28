@@ -153,3 +153,7 @@ $$h\left ( a_{j}^{l} \right ){}'$$
 ### 前一层的feature map的$\delta$值等于当前层feature map的$\delta$值卷积操作当前层的相关滤波器（或者表述为当前层feature map的$\delta$值相关操作前后左右翻转当前层的相关滤波器）。
 
 ### 当前层的滤波器$\delta$更新等于前一层的feature map的值和当前层feature map的$\delta$值的相关操作。
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

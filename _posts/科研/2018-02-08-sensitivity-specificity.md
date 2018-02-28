@@ -60,3 +60,7 @@ A = (TP + TN)/(P+N) = (TP + TN)/(TP + FN + FP + TN);
 召回率(Recall)，也称为 True Positive Rate: 
 
 R = TP/(TP+FN) = 1 - FN/T; 反映了被正确判定的正例占总的正例的比重
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

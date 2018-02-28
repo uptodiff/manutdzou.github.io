@@ -103,3 +103,7 @@ def compute_triplet_loss(anchor_feature, positive_feature, negative_feature, mar
 
         return tf.reduce_mean(loss), tf.reduce_mean(d_p_squared), tf.reduce_mean(d_n_squared)
 ```
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

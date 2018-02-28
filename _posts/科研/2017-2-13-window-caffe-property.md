@@ -448,6 +448,8 @@ int main(int argc, char** argv) {
 
 终于可以基于libcaffe来开发上层建筑了，想象一下在ubuntu下训练好模型然后在windows下包装添加用户界面以供使用是多么方便和炫酷的一件事情。
 
-再次求打赏啊！！！
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)
 
 ![2](/public/img/pay.jpg)

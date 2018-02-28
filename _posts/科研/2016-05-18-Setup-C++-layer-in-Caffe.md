@@ -561,6 +561,9 @@ TYPED_TEST(TripletLossLayerTest,TestGradient) {
 
 这个写法主要适合老版本的Caffe，新版本的Caffe每个layer实现都有一个.cpp与.hpp相对应，不过步骤都是一致的。
 
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)
 
 
 

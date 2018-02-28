@@ -256,3 +256,7 @@ Result
 
 
 参考http://sujitpal.blogspot.jp/2017/01/migrating-vgg-cnn-from-caffe-to-keras.html，修改了部分错误
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

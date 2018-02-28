@@ -100,3 +100,7 @@ $$ROT180\left ( w_{x,y}^{l+1} \right )=w_{-x,-y}^{l+1}$$
 ![13](/public/img/posts/CNN反向传播详解/12.png)
 
 也就是卷积核的权重$\delta$等于当前层feature map的$\delta$和前一层feature map的值旋转180度后作卷积或者表述为卷积核的权重$\delta$等于当前层feature map的$\delta$和前一层feature map的值作相关
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

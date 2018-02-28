@@ -54,3 +54,7 @@ label_names:
 ```
 label_viz
 ![3](/public/img/posts/segmentation tool/label_viz.png)
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)

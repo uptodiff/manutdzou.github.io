@@ -221,7 +221,9 @@ $$\frac{\partial E}{\partial Whh}=\frac{\partial E}{\partial u}\ast \left ( h^{t
 
 由此可见其实RNN的推导相比于CNN要简单好多，可以理解为是一个普通全连接的网络连接的梯度传递和隐层的时序连接的梯度传递的和。
 
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
 
+![20](/public/img/pay.jpg)
 
 
 

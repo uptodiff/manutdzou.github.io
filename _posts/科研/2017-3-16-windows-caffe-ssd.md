@@ -596,6 +596,6 @@ DEFINE_string(file_type, "video",
 	"The file type in the list_file. Currently support image and video.");
 ```
 
-再次求打赏啊！！！
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
 
 ![3](/public/img/pay.jpg)
