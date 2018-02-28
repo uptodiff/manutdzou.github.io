@@ -251,3 +251,7 @@ cd /usr/lib/x86_64-linux-gnu
 sudo ln -s libhdf5_serial.so.8.0.2 libhdf5.so
 sudo ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so
 ```
+
+看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
+
+![20](/public/img/pay.jpg)
