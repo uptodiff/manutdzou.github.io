@@ -26,6 +26,4 @@ Zou J, Li W, Chen C, et al. Scene Classification Using Local and Global Features
 
 ## In Lenovo AI Lab E-health team
 
-### LITS Challenge Champion in MICCAI 2017
-
-https://competitions.codalab.org/competitions/17094#results
+### LITS Challenge Champion in MICCAI 2017[https://competitions.codalab.org/competitions/17094#results]
