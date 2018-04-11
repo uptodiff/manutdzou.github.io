@@ -1,13 +1,13 @@
 ---
 layout: post
-title: 研究生成果
+title: 成果
 category: 成长经历
 tags: 
 keywords: mark
 description: 阶段总结
 ---
 
-# 三年研究生成果汇总
+# 研究生成果汇总
 
 ## SCI paper
 
@@ -22,3 +22,10 @@ Zou J, Li W, Chen C, et al. Scene Classification Using Local and Global Features
 基于特征提取和稀疏表示的图像分类算法研究
 [http://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CMFD&dbname=CMFD201701&filename=1016323332.nh&v=MTQ2MzgzQVZGMjZHTEM2SGRMUHJaRWJQSVI4ZVgxTHV4WVM3RGgxVDNxVHJXTTFGckNVUkxLZlkrZHVGQ2puVWI=]
 
+# 工作成果汇总
+
+## In Lenovo AI Lab E-health team
+
+### LITS Challenge Champion in MICCAI 2017
+
+https://competitions.codalab.org/competitions/17094#results
