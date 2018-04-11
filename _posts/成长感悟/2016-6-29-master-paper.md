@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 研究生成果
-category: paper
+category: 成长经历
 tags: 
 keywords: mark
 description: 阶段总结
@@ -19,5 +19,6 @@ Zou J, Li W, Chen C, et al. Scene Classification Using Local and Global Features
 
 ## 研究生毕业论文
 
-基于特征提取和稀疏表示的图像分类算法研究[http://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CMFD&dbname=CMFD201701&filename=1016323332.nh&v=MTQ2MzgzQVZGMjZHTEM2SGRMUHJaRWJQSVI4ZVgxTHV4WVM3RGgxVDNxVHJXTTFGckNVUkxLZlkrZHVGQ2puVWI=]
+基于特征提取和稀疏表示的图像分类算法研究
+[http://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CMFD&dbname=CMFD201701&filename=1016323332.nh&v=MTQ2MzgzQVZGMjZHTEM2SGRMUHJaRWJQSVI4ZVgxTHV4WVM3RGgxVDNxVHJXTTFGckNVUkxLZlkrZHVGQ2puVWI=]
 
