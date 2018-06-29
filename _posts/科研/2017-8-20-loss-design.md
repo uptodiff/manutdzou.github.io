@@ -104,6 +104,17 @@ def compute_triplet_loss(anchor_feature, positive_feature, negative_feature, mar
         return tf.reduce_mean(loss), tf.reduce_mean(d_p_squared), tf.reduce_mean(d_n_squared)
 ```
 
+# Huber_loss
+
+```
+def huber_loss(labels, predictions, delta=1.0):
+    residual = tf.abs(predictions - labels)
+    condition = tf.less(residual, delta)
+    small_res = 0.5 * tf.square(residual)
+    large_res = delta * residual - 0.5 * tf.square(delta)
+    return tf.where(condition, small_res, large_res)
+```
+
 看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
 
 ![20](/public/img/pay.jpg)
