@@ -19,6 +19,7 @@ IN归一化的维度为[H，W];
 
 而GN介于LN和IN之间，其首先将channel分为许多组，对每一组做归一化，及先将feature的维度由[N, C, H, W]reshape为[N, G，C//G , H, W]，归一化的维度为[C//G , H, W];
 
+```
 def norm(x, norm_type, is_train, G=32, esp=1e-5):
     with tf.variable_scope('{}_norm'.format(norm_type)):
         if norm_type == 'none':
@@ -51,7 +52,7 @@ def norm(x, norm_type, is_train, G=32, esp=1e-5):
         else:
             raise NotImplementedError
     return output
-
+```
 
 看我写的辛苦求打赏啊！！！有学术讨论和指点请加微信manutdzou,注明
 
