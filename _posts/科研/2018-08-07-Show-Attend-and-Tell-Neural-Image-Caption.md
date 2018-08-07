@@ -12,11 +12,12 @@ description:
 [github](https://github.com/yunjey/show-attend-and-tell)
 
 输入：图像I
-特征(annotation)：$\left \{ a_1...a_i...a_L \right \}$
 
-上下文(context)：$\left \{ z_1...z_t...z_C \right \}$
+特征(annotation)：$\left { a_1...a_i...a_L \right }$
 
-输出(caption)：$\left \{ y_1...y_t...y_C \right \}$
+上下文(context)：$\left { z_1...z_t...z_C \right }$
+
+输出(caption)：$\left { y_1...y_t...y_C \right }$
 
 ![1](/public/img/posts/caption/1.PNG)
 
@@ -28,7 +29,7 @@ $z_t$是一个D维特征，共有C个，表示每个单词对应的上下文
 
 输出有顺序的一句caption,句子长度C不定，每个单词$y_t$是一个K维概率，K是字典的大小
 
-##算法流程
+## 算法流程
 
 首先利用卷积网络获取一组图片的描述features，输入图像I归一化到224×224。特征a直接使用现成的VGG网络中conv5_3层的14×14×512维特征。区域数量L=14×14=196，维度D=512。
 
