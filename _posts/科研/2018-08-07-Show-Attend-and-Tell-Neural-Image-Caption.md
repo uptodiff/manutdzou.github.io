@@ -11,13 +11,13 @@ description:
 
 [github](https://github.com/yunjey/show-attend-and-tell)
 
-输入：图像I
+输入：图像$I$
 
-特征(annotation)：$\{ a_1...a_i...a_L \}$
+特征(annotation)：${ a_1...a_i...a_L }$
 
-上下文(context)：$\{ z_1...z_t...z_C \}$
+上下文(context)：${ z_1...z_t...z_C }$
 
-输出(caption)：$\{ y_1...y_t...y_C \}$
+输出(caption)：${ y_1...y_t...y_C }$
 
 ![1](/public/img/posts/caption/1.PNG)
 
@@ -45,8 +45,7 @@ def _attention_layer(self, features, features_proj, h, reuse=False):            
         w = tf.get_variable('w', [self.H, self.D], initializer=self.weight_initializer)                                                                                          <module> train.py:25
         b = tf.get_variable('b', [self.D], initializer=self.const_initializer)                                                                                                
         w_att = tf.get_variable('w_att', [self.D, 1], initializer=self.weight_initializer)                                                                                    
-                                                                                                                                                                                    
-        h_att = tf.nn.relu(features_proj + tf.expand_dims(tf.matmul(h, w), 1) + b)    # (N, L, D)                                                                             
+         h_att = tf.nn.relu(features_proj + tf.expand_dims(tf.matmul(h, w), 1) + b)    # (N, L, D)                                                                             
         out_att = tf.reshape(tf.matmul(tf.reshape(h_att, [-1, self.D]), w_att), [-1, self.L])   # (N, L)                                                                      
         alpha = tf.nn.softmax(out_att)                                                                                                                                        
         context = tf.reduce_sum(features * tf.expand_dims(alpha, 2), 1, name='context')   #(N, D)                                                                             
