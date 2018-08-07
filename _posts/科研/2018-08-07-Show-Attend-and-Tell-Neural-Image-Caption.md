@@ -13,11 +13,11 @@ description:
 
 输入：图像I
 
-特征(annotation)：$\left { a_1...a_i...a_L \right }$
+特征(annotation)：$\{ a_1...a_i...a_L \}$
 
-上下文(context)：$\left { z_1...z_t...z_C \right }$
+上下文(context)：$\{ z_1...z_t...z_C \}$
 
-输出(caption)：$\left { y_1...y_t...y_C \right }$
+输出(caption)：$\{ y_1...y_t...y_C \}$
 
 ![1](/public/img/posts/caption/1.PNG)
 
