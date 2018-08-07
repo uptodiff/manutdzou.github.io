@@ -40,16 +40,16 @@ $z_t$是一个D维特征，共有C个，表示每个单词对应的上下文
 利用图像特征的映射features_proj和前一时刻的隐变量$h_t-1$经过MLP的和生成attention来获取当前的上下文信息context和权重alpha
 
 ```
-def _attention_layer(self, features, features_proj, h, reuse=False):                                                                                                             train [CaptioningSolver] solver.py:81
-    with tf.variable_scope('attention_layer', reuse=reuse):                                                                                                                      main train.py:22
-        w = tf.get_variable('w', [self.H, self.D], initializer=self.weight_initializer)                                                                                          <module> train.py:25
-        b = tf.get_variable('b', [self.D], initializer=self.const_initializer)                                                                                                
-        w_att = tf.get_variable('w_att', [self.D, 1], initializer=self.weight_initializer)                                                                                    
-         h_att = tf.nn.relu(features_proj + tf.expand_dims(tf.matmul(h, w), 1) + b)    # (N, L, D)                                                                             
-        out_att = tf.reshape(tf.matmul(tf.reshape(h_att, [-1, self.D]), w_att), [-1, self.L])   # (N, L)                                                                      
-        alpha = tf.nn.softmax(out_att)                                                                                                                                        
-        context = tf.reduce_sum(features * tf.expand_dims(alpha, 2), 1, name='context')   #(N, D)                                                                             
-        return context, alpha                                 
+def _attention_layer(self, features, features_proj, h, reuse=False):
+    with tf.variable_scope('attention_layer', reuse=reuse):
+        w = tf.get_variable('w', [self.H, self.D], initializer=self.weight_initializer)
+        b = tf.get_variable('b', [self.D], initializer=self.const_initializer)
+        w_att = tf.get_variable('w_att', [self.D, 1], initializer=self.weight_initializer)
+         h_att = tf.nn.relu(features_proj + tf.expand_dims(tf.matmul(h, w), 1) + b)    # (N, L, D)
+        out_att = tf.reshape(tf.matmul(tf.reshape(h_att, [-1, self.D]), w_att), [-1, self.L])   # (N, L)
+        alpha = tf.nn.softmax(out_att)
+        context = tf.reduce_sum(features * tf.expand_dims(alpha, 2), 1, name='context')   #(N, D)
+        return context, alpha
 ```
 
 利用当前的上下文信息context和上一时刻描述的词的Embedding x的concat信息以及上一时刻的状态$h_t-1$和$c_t-1$输入lstm来获取当前时刻的$h_t$和$c_t$
