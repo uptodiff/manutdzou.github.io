@@ -13,11 +13,11 @@ description:
 
 输入：图像$I$
 
-特征(annotation)：$\left {a_1...a_i...a_L \right}$
+特征(annotation)：$[\left {a_1...a_i...a_L \right}]$
 
-上下文(context)：$\left { z_1...z_t...z_C \right}$
+上下文(context)：$[\left { z_1...z_t...z_C \right}]$
 
-输出(caption)：$\left {y_1...y_t...y_C \right}$
+输出(caption)：$[\left {y_1...y_t...y_C \right}]$
 
 ![1](/public/img/posts/caption/1.PNG)
 
@@ -52,7 +52,7 @@ def _attention_layer(self, features, features_proj, h, reuse=False):
         return context, alpha
 ```
 
-利用当前的上下文信息context和上一时刻描述的词的Embedding x的concat信息以及上一时刻的状态$h_t-1$和$c_t-1$输入lstm来获取当前时刻的$h_t$和$c_t$
+利用当前的上下文信息context和上一时刻描述的词的Embedding x的concat信息以及上一时刻的状态$h_{t-1}$和$c_{t-1}$输入lstm来获取当前时刻的$h_t$和$c_t$
 
 ```
 with tf.variable_scope('lstm', reuse=(t!=0)):                                                                                                                         
