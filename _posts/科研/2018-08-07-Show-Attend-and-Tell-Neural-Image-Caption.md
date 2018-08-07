@@ -18,7 +18,7 @@ description:
 
 输出(caption)：$\left \{ y_1...y_t...y_C \right \}$
 
-![1](/public/posts/caption/1.PNG)
+![1](/public/img/posts/caption/1.PNG)
 
 I是输入的彩色图像
 
@@ -34,7 +34,7 @@ $z_t$是一个D维特征，共有C个，表示每个单词对应的上下文
 
 利用图片的描述features初始化lstm的状态和隐变量h和c
 
-![2](/public/posts/caption/2.PNG)
+![2](/public/img/posts/caption/2.PNG)
 
 利用图像特征的映射features_proj和前一时刻的隐变量$h_t-1$经过MLP的和生成attention来获取当前的上下文信息context和权重alpha
 
@@ -61,7 +61,7 @@ with tf.variable_scope('lstm', reuse=(t!=0)):
 
 利用当前的上下文信息context和上一时刻描述的词的Embedding x以及当前时刻的隐状态$h$来编码预测当前时刻描述的词，见原文公式,并且代码实现上严格参照了论文的表述
 
-![3](/public/posts/caption/3.PNG)
+![3](/public/img/posts/caption/3.PNG)
 
 ```
     def _decode_lstm(self, x, h, context, dropout=False, reuse=False):
