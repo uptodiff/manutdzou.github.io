@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Some papers
+title: Group Normalization
 category: 科研
 tags: 
 keywords: 
